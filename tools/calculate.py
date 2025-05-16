@@ -104,3 +104,26 @@ def miles_to_km(miles: float) -> float:
 
 def km_to_miles(km: float) -> float:
     return km / 1.60934
+
+# === BASIC ARITHMETIC OPERATIONS ===
+def add(numbers: List[float]) -> float:
+    """Add a list of numbers together."""
+    return sum(numbers)
+
+def subtract(minuend: float, subtrahend: float) -> float:
+    """Subtract one number from another."""
+    return minuend - subtrahend
+
+def multiply(numbers: List[float]) -> float:
+    """Multiply a list of numbers together."""
+    result = 1
+    for number in numbers:
+        result *= number
+    return result
+
+def divide(dividend: float, divisor: float) -> Union[float, str]:
+    """Divide one number by another."""
+    try:
+        return dividend / divisor
+    except ZeroDivisionError:
+        return "Division by zero is not allowed."

@@ -72,19 +72,19 @@ def clean_page_html(html):
 
 ## Exmple usage:
 # Uncomment the following lines to run the example usage
-if __name__ == "__main__":
-    query = "quantum entanglement"
+# if __name__ == "__main__":
+#     query = "quantum entanglement"
 
-    # Step 1
-    search_results = search_wikipedia(query)
-    print("Search Results:")
-    for res in search_results:
-        print(f"- {res['title']} (pageid={res['pageid']})\n  → {res['snippet']}")
+#     # Step 1
+#     search_results = search_wikipedia(query)
+#     print("Search Results:")
+#     for res in search_results:
+#         print(f"- {res['title']} (pageid={res['pageid']})\n  → {res['snippet']}")
 
-    # Step 2: (Pretend agent picks one)
-    chosen_pageid = search_results[0]['pageid']
-
-    content_html = get_wikipedia_content(chosen_pageid)
-    clean_content_html = clean_page_html(content_html)
-    #print("\nRaw Wikipedia Page HTML:\n", content_html[:1000])
-    print("\nFull Wikipedia Page Content:\n", clean_content_html)
+#    # Step 2: (Pretend agent picks one)
+#     chosen_pageid = search_results[0]['pageid']
+ 
+#     content_html = get_wikipedia_content(chosen_pageid)
+#     clean_content_html = clean_page_html(content_html)
+#     #print("\nRaw Wikipedia Page HTML:\n", content_html[:1000])
+#     print("\nFull Wikipedia Page Content:\n", clean_content_html)

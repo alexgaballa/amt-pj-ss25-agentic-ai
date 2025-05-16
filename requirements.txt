@@ -1,5 +1,10 @@
+langchain-core>=0.3.37
+langchain-community
 langchain
-openai
+langgraph>=0.0.10
+google-generativeai
+langchain-google-genai
 requests
 python-dotenv
-google-generativeai
+bs4
+langgraph-checkpoint-sqlite
