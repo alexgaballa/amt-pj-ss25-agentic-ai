@@ -12,7 +12,7 @@ Make sure:
 3. The server is listening on port 8050.
 
 To run the server:
-uv run server.py
+uv run server.py or python server.py
 """
 
 
