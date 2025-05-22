@@ -20,7 +20,7 @@ def search_wikipedia(query, limit=5):
     search_summaries = []
 
     for result in results[:limit]:
-        clean_snippet = clean_html(result["snippet"])
+        clean_snippet = clean_page_html(result["snippet"])
         search_summaries.append({
             "title": result["title"],
             "pageid": result["pageid"],
@@ -29,13 +29,45 @@ def search_wikipedia(query, limit=5):
 
     return search_summaries
 
-def clean_html(raw_html):
-    """Remove all HTML tags like <span>, <b>, etc."""
-    clean_text = re.sub(r"<.*?>", "", raw_html)
-    return clean_text
+def get_page_sections(pageid):
+    """Fetch the sections of a Wikipedia page."""
+    params = {
+        "action": "parse",
+        "pageid": pageid,
+        "prop": "sections",
+        "format": "json"
+    }
+    response = requests.get(WIKI_API_URL, params=params)
+    data = response.json()
+
+    sections = data.get("parse", {}).get("sections", [])
+    section_titles = [section["line"] for section in sections]
+    section_index = {section["line"]: section["index"] for section in sections}
+    return section_titles, section_index
+
+def get_section_content(pageid, section_index):
+    """Fetch a specific section of a Wikipedia page."""
+    params = {
+        "action": "parse",
+        "pageid": pageid,
+        "section": section_index,
+        "prop": "text",
+        "format": "json"
+    }
+    response = requests.get(WIKI_API_URL, params=params)
+    data = response.json()
+
+    # Extract content from HTML and clean it
+    try:
+        html_content = data["parse"]["text"]["*"]
+        # Clean the HTML to extract readable text
+        cleaned_content = clean_page_html(html_content)
+        return cleaned_content
+    except KeyError:
+        return "Content could not be retrieved."
 
 def get_wikipedia_content(pageid):
-    """Step 3-4: Fetch the full content of the selected Wikipedia page."""
+    """Fetch the full content of the selected Wikipedia page and return it as cleaned text."""
     params = {
         "action": "parse",
         "pageid": pageid,
@@ -45,10 +77,12 @@ def get_wikipedia_content(pageid):
     response = requests.get(WIKI_API_URL, params=params)
     data = response.json()
 
-    # Extract plain text from HTML (simplified for now)
+    # Extract content from HTML and clean it
     try:
         html_content = data["parse"]["text"]["*"]
-        return html_content
+        # Clean the HTML to extract readable text
+        cleaned_content = clean_page_html(html_content)
+        return cleaned_content
     except KeyError:
         return "Content could not be retrieved."
 
@@ -69,6 +103,49 @@ def clean_page_html(html):
 
 
     return cleaned_text
+
+def get_multiple_sections_content(pageid, section_indices):
+    """Fetch multiple sections of a Wikipedia page in one batch to reduce API calls.
+    
+    Args:
+        pageid (int): The Wikipedia page ID
+        section_indices (list[str]): List of section indices to retrieve as strings
+    
+    Returns:
+        dict: Dictionary mapping section indices to their cleaned content
+    """
+    sections_content = {}
+    
+    if not section_indices:
+        return {"error": "No section indices provided"}
+        
+    # Convert pageid to integer if it's not already
+    try:
+        pageid = int(pageid)
+    except (ValueError, TypeError):
+        return {"error": f"Invalid page ID: {pageid}. Must be an integer."}
+    
+    for section_index in section_indices:
+        # We still need to make multiple API calls, but we're batching them
+        # in a single function call from the agent's perspective
+        params = {
+            "action": "parse",
+            "pageid": pageid,
+            "section": section_index,
+            "prop": "text",
+            "format": "json"
+        }
+        response = requests.get(WIKI_API_URL, params=params)
+        data = response.json()
+        
+        try:
+            html_content = data["parse"]["text"]["*"]
+            cleaned_content = clean_page_html(html_content)
+            sections_content[section_index] = cleaned_content
+        except KeyError:
+            sections_content[section_index] = f"Content could not be retrieved for section {section_index}."
+    
+    return sections_content
 
 ## Exmple usage:
 # Uncomment the following lines to run the example usage
