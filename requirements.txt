@@ -8,3 +8,10 @@ requests
 python-dotenv
 bs4
 langgraph-checkpoint-sqlite
+
+#MCP
+mcp[cli]
+# python-dotenv
+# openai
+ipykernel
+httpx
