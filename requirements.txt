@@ -15,3 +15,5 @@ mcp[cli]
 # openai
 ipykernel
 httpx
+uv
+#(install node.js if not already installed)
