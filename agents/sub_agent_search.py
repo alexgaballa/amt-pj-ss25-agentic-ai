@@ -12,7 +12,7 @@ load_dotenv()
 # Create the agent executor with the LLM and tools
 tools = [search_wikipedia_tool, get_wikipedia_content_tool, get_page_sections_tool, get_section_content_tool, get_multiple_sections_content_tool]
 memory = MemorySaver()
-model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, memory=memory)
+model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.2)
  
 # Bind the tools to the model
 #model_with_tools = model.bind_tools(tools)
