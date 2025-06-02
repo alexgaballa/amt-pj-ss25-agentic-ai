@@ -18,9 +18,9 @@ def add(a: int, b: int) -> int:
     """
     return a + b
 
-# run the server
+# to run the server --> mcp dev server.py
 if __name__ == "__main__":
-    transport = "sse"
+    transport = "stdio"
     # stdio for basic input/output streams on the same machine
     if transport == "stdio":
         print("Running in stdio mode")

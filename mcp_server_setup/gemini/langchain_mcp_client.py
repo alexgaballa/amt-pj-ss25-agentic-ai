@@ -139,4 +139,7 @@ async def run_agent():
 if __name__ == "__main__":
     asyncio.run(run_agent())
 
+# vorher mcp-server starten:
+# mcp dev server.py (im mcp_server_setup Verzeichnis)
 # uv run langchain_mcp_client.py ../server.py to start
+#https://youtu.be/hccNm88bk6w?si=dI7i4jePWqfSJA0p
