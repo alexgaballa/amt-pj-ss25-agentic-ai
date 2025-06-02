@@ -139,7 +139,18 @@ async def run_agent():
 if __name__ == "__main__":
     asyncio.run(run_agent())
 
-# vorher mcp-server starten:
-# mcp dev server.py (im mcp_server_setup Verzeichnis)
-# uv run langchain_mcp_client.py ../server.py to start
-#https://youtu.be/hccNm88bk6w?si=dI7i4jePWqfSJA0p
+# vworkflow: mcp-server starten:
+# mcp dev server_calculate.py (im mcp_server_setup Verzeichnis) im debug modus mit code inspector
+# python server_calculate.py ohne debug modus
+# mcp dev server_wiki_search.py (im mcp_server_setup Verzeichnis) im debug modus mit code inspector
+# python server_wiki_search.py ohne debug modus
+
+# ---------------------------	
+# uv run langchain_mcp_client.py ../server_calculate.py 
+# --> to start with calculate server
+
+# uv run langchain_mcp_client.py ../server_wiki_search.py 
+# --> to start with wiki search server
+
+# ---------------------------
+# https://youtu.be/hccNm88bk6w?si=dI7i4jePWqfSJA0p
