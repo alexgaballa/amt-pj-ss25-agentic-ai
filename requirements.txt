@@ -12,3 +12,4 @@ python-dateutil
 pint
 sympy
 langchain_ollama
+chainlit
