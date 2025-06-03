@@ -226,112 +226,80 @@ async def on_chat_start():
 @cl.on_message
 async def on_message(message: cl.Message):
     runnable = cl.user_session.get("runnable")
-    messages_history = cl.user_session.get("messages")
-    messages_history.append(HumanMessage(content=message.content))
+    # Get the true, complete history from the session
+    messages_history_from_session = cl.user_session.get("messages", [])
+
+    # For this specific run, start with the session history and add the new user message
+    current_run_input_messages = list(messages_history_from_session)
+    current_run_input_messages.append(HumanMessage(content=message.content))
 
     async with cl.Step(name="Orchestration Process", type="run", show_input=True) as main_step:
         main_step.input = message.content
-        current_graph_input_messages = list(messages_history)
-        final_answer_message = None
-        config = {"configurable": {"thread_id": cl.context.session.id}} # Use Chainlit session ID for thread_id
+        config = {"configurable": {"thread_id": cl.context.session.id}}
 
         await cl.Message(content=f"👤 You: {message.content}", author="User", parent_id=main_step.id).send()
+        
+        final_answer_content = None
+        # This will hold all messages (input + generated) for this particular invocation
+        messages_for_this_invocation = [] 
 
-        max_turns = 10 
-        for turn in range(max_turns):
-            print(f"\n--- Turn {turn + 1} ---")
-            main_step.output = f"Orchestrator processing (Turn {turn + 1})..."
-            # await main_step.update() # Not always needed if other messages update the UI
-
-            graph_input = {"messages": current_graph_input_messages}
-            
-            # Accumulate messages from this turn's graph execution
-            new_messages_this_turn = []
-
-            async for event in runnable.astream(graph_input, config=config, stream_mode="values"):
-                last_graph_message = event["messages"][-1]
-                print(f"📬 Graph Event: Node produced message: {last_graph_message.type} - Content/ToolCalls: {last_graph_message.content if last_graph_message.content else getattr(last_graph_message, 'tool_calls', 'N/A')}")
-
-                # Add message to new_messages_this_turn if it's actually new from this event
-                # Check based on content/tool_calls to avoid simple object ref issues if state is mutated
-                is_new = True
-                if new_messages_this_turn: # Check against already collected messages in *this turn*
-                    if new_messages_this_turn[-1].content == last_graph_message.content and \
-                       getattr(new_messages_this_turn[-1], 'tool_calls', None) == getattr(last_graph_message, 'tool_calls', None):
-                        is_new = False
+        try:
+            async for event in runnable.astream({"messages": current_run_input_messages}, config=config, stream_mode="values"):
+                # event is the full AgentState from the graph.
+                # event["messages"] is the current list of messages in the graph's state.
+                if not event.get("messages"):
+                    continue
                 
-                if is_new:
-                    new_messages_this_turn.append(last_graph_message)
+                # Update our record of all messages for this specific invocation
+                messages_for_this_invocation = list(event["messages"])
+                last_message_in_event = messages_for_this_invocation[-1]
 
-                if isinstance(last_graph_message, AIMessage):
-                    if last_graph_message.tool_calls:
+                print(f"📬 Graph Event State: Last message type: {last_message_in_event.type}, "
+                      f"Content/ToolCalls: {last_message_in_event.content if last_message_in_event.content else getattr(last_message_in_event, 'tool_calls', 'N/A')}")
+
+                if isinstance(last_message_in_event, AIMessage):
+                    if last_message_in_event.tool_calls:
                         tool_call_details = []
-                        for tc in last_graph_message.tool_calls:
+                        for tc in last_message_in_event.tool_calls:
                             tool_call_details.append(f"Tool: `{tc['name']}`, Args: `{tc['args']}`")
                         tool_calls_str = "\n".join(tool_call_details)
                         
-                        async with cl.Step(name="Orchestrator Decision: Call Tool(s)", parent_id=main_step.id) as tool_step:
-                            tool_step.output = f"🤖 Orchestrator decided to use tool(s):\n{tool_calls_str}"
-                        # Break from astream inner loop: The graph will execute tools and loop back.
-                        # We will catch the ToolMessage in the next iteration of astream (or next turn's astream)
-                        # after orchestrator re-processes.
+                        # Display the decision to call a tool.
+                        # The tool's own cl.Message calls will show its execution.
+                        async with cl.Step(name="Orchestrator Decision: Call Tool(s)", parent_id=main_step.id) as tool_decision_step:
+                            tool_decision_step.output = f"🤖 Orchestrator decided to use tool(s):\n{tool_calls_str}"
+                        # DO NOT BREAK HERE. Let astream continue.
+                        # The ToolNode will run, and a new event with ToolMessage will be yielded by astream.
+                    
+                    elif last_message_in_event.content: # AIMessage without tool_calls but with content = final answer
+                        final_answer_content = last_message_in_event.content
+                        print(f"🏁 Orchestrator Final Answer (from AIMessage content): {final_answer_content}")
+                        main_step.output = final_answer_content # Update main step output
+                        # We have the final answer, so we can break the astream loop.
                         break 
-                    else: 
-                        final_answer_message = last_graph_message
-                        print(f"🏁 Orchestrator Final Answer (from AIMessage): {final_answer_message.content}")
-                        break # Break from astream loop, we have final answer
-            
-            # Add all unique messages from this pass through the graph to current_graph_input_messages
-            for msg in new_messages_this_turn:
-                 if msg not in current_graph_input_messages: # Ensure no direct duplicates from multiple yields of same state
-                    current_graph_input_messages.append(msg)
+                
+                elif isinstance(last_message_in_event, ToolMessage):
+                     # The tools themselves send cl.Messages. We can log here if needed.
+                     print(f"🛠️ Tool Execution Result processed by graph: {last_message_in_event.name} -> {last_message_in_event.content[:100]}...")
+                     # The graph will loop this ToolMessage back to the orchestrator_agent_node.
+                     # astream will continue to yield events from that.
 
-            if final_answer_message:
-                messages_history.extend(current_graph_input_messages[len(messages_history):]) # Add all new messages from the whole interaction
-                cl.user_session.set("messages", messages_history)
-                main_step.output = final_answer_message.content
-                await cl.Message(content=final_answer_message.content, author="Orchestrator ✨").send()
-                return 
+        except Exception as e:
+            print(f"An error occurred during graph execution: {e}")
+            cl.Error(f"An error occurred: {e}").send() # Show error in UI
+            main_step.output = f"Error: {e}"
+            # Fall through to send a message to the user if no final_answer_content
 
-            # If we broke from astream due to tool_calls, the graph continues.
-            # The current_graph_input_messages now contains the AIMessage with tool_calls.
-            # The next call to astream (in the next 'turn') will start from this state.
-            # The ToolNode will run, add ToolMessages, and then the orchestrator will run again.
-            # We need to ensure that current_graph_input_messages is up-to-date for the next turn.
-
-            # Safety check: if the last message is an AI message without tool calls, it's a final answer.
-            # This could happen if the tool execution and subsequent LLM call happened within one astream completion.
-            if current_graph_input_messages and isinstance(current_graph_input_messages[-1], AIMessage) and \
-               not current_graph_input_messages[-1].tool_calls and \
-               current_graph_input_messages[-1].content: # Ensure it has content
-                final_answer_message = current_graph_input_messages[-1]
-                print(f"🏁 Orchestrator Final Answer (end of turn check): {final_answer_message.content}")
-                messages_history.extend(current_graph_input_messages[len(messages_history):])
-                cl.user_session.set("messages", messages_history)
-                main_step.output = final_answer_message.content
-                await cl.Message(content=final_answer_message.content, author="Orchestrator ✨").send()
-                return
-            
-            if not any(isinstance(msg, AIMessage) and msg.tool_calls for msg in new_messages_this_turn):
-                # If no tool calls were issued in this turn and no final answer, something might be stuck or it's an unexpected state.
-                # However, the graph should normally cycle until END or tool call.
-                # This might indicate the LLM didn't call a tool and didn't give a final answer.
-                print(f"⚠️ No tool call or final answer in turn {turn + 1}. Last messages: {new_messages_this_turn}")
-                # Let it try another turn.
-
-
-        if not final_answer_message:
-            print("⚠️ Orchestrator did not provide a final answer after max turns.")
-            # Try to get the last AI message if any, even if it's not marked as "final" by the logic.
-            last_ai_content = "Sorry, I encountered an issue and couldn't complete your request after several steps."
-            for msg in reversed(current_graph_input_messages):
-                if isinstance(msg, AIMessage) and msg.content:
-                    last_ai_content = msg.content
-                    break
-            main_step.output = last_ai_content
-            await cl.Message(content=last_ai_content, author="Orchestrator ⚠️").send()
-        
-        # Update session history with all messages from this interaction
-        final_history_update = [m for m in current_graph_input_messages if m not in messages_history]
-        messages_history.extend(final_history_update)
-        cl.user_session.set("messages", messages_history)
+        # After the astream loop finishes (either by break on final answer or natural end of stream)
+        if final_answer_content:
+            await cl.Message(content=final_answer_content, author="Orchestrator ✨").send()
+            # Update the main user session history with all messages from this successful run
+            cl.user_session.set("messages", messages_for_this_invocation)
+        else:
+            print("⚠️ Orchestrator did not provide a final answer or an error occurred earlier.")
+            if not main_step.output: # If no specific error message was set
+                 main_step.output = "Sorry, I could not process your request fully."
+            await cl.Message(content=main_step.output or "Sorry, I could not process your request fully.", author="Orchestrator ⚠️").send()
+            # Decide how to update history on failure. 
+            # Storing messages_for_this_invocation allows debugging the partial run.
+            cl.user_session.set("messages", messages_for_this_invocation if messages_for_this_invocation else current_run_input_messages)
