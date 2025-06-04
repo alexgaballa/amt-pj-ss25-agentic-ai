@@ -8,8 +8,17 @@ requests
 python-dotenv
 bs4
 langgraph-checkpoint-sqlite
+
+#MCP
+mcp[cli]
+# python-dotenv
+# openai
+ipykernel
+httpx
+uv
+#(install node.js if not already installed)
+
 python-dateutil
 pint
 sympy
 langchain_ollama
-chainlit
