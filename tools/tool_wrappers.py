@@ -1,6 +1,7 @@
 """Tool wrappers for Langchain integration with proper type hints."""
 from typing import List, Union, Tuple, Dict
 from langchain_core.tools import tool
+from typing import Optional
 from tools.calculate import (
     convert_units, add, subtract, multiply, divide,
     calculate_years_between, calculate_days_between, calculate_mean,
@@ -243,6 +244,50 @@ def get_multiple_sections_content_tool(page_id: int, section_indices: List[str])
         Dictionary mapping section indices to their content
     """
     return get_multiple_sections_content(page_id, section_indices)
+
+@tool
+def call_search_agent(query: str, context: Optional[dict] = None) -> str:
+    """
+    Invokes the search agent to find information, search the web or Wikipedia, or look up facts.
+    Use this for questions like 'What is the capital of France?', 'Summarize the Wikipedia page for AI', 'What is the current weather in Paris?'.
+    Args:
+        query: The specific question or search term for the search agent.
+        context: Optional additional context for the search agent.
+    Returns:
+        The result from the search agent.
+    """
+    if context is None:
+        context = {}
+    print(f"\n🤖 Orchestrator: Calling Search Agent with query: '{query}' and context: {context}")
+    
+    # Import here to avoid circular dependencies
+    from agents.sub_agent_search import run_search_agent
+    
+    result = run_search_agent(user_query=query, context=context, verbose=False)
+    print(f"🤖 Orchestrator: Search Agent returned: '{result}'")
+    return result
+
+@tool
+def call_reason_agent(query: str, context: Optional[dict] = None) -> str:
+    """
+    Invokes the reason agent for calculations, unit conversions, date manipulations, logical reasoning, or solving math expressions.
+    Use this for questions like 'What is 2+2?', 'Convert 100 miles to km', 'How old am I if born on Jan 1, 2000?'.
+    Args:
+        query: The specific problem or question for the reason agent.
+        context: Optional additional context for the reason agent.
+    Returns:
+        The result from the reason agent.
+    """
+    if context is None:
+        context = {}
+    print(f"\n🤖 Orchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
+    
+    # Import here to avoid circular dependencies
+    from agents.sub_agent_reason import run_reason_agent
+    
+    result = run_reason_agent(user_query=query, context=context, verbose=False)
+    print(f"🤖 Orchestrator: Reason Agent returned: '{result}'")
+    return result
 
 # Aggregate all tools
 calculation_tools = [
