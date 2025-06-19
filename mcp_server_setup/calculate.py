@@ -8,7 +8,15 @@ from pint import UnitRegistry
 import statistics
 import sympy as sp
 import re
-from typing import List, Union
+from typing import List, Union, Optional
+import sys
+import os
+
+# Add parent directory to path to enable relative imports
+# This allows importing from siblings of mcp_server_setup directory
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Now import from agents directory
+from agents.sub_agent_reason import run_reason_agent
 
 ureg = UnitRegistry()
 
@@ -127,3 +135,21 @@ def divide(dividend: float, divisor: float) -> Union[float, str]:
         return dividend / divisor
     except ZeroDivisionError:
         return "Division by zero is not allowed."
+
+def call_reason_agent(query: str, context: Optional[dict] = None) -> str:
+    """
+    Invokes the reason agent for calculations, unit conversions, date manipulations, logical reasoning, or solving math expressions.
+    Use this for questions like 'What is 2+2?', 'Convert 100 miles to km', 'How old am I if born on Jan 1, 2000?'.
+    Args:
+        query: The specific problem or question for the reason agent.
+        context: Optional additional context for the reason agent.
+    Returns:
+        The result from the reason agent.
+    """
+    if context is None:
+        context = {}
+    print(f"\n🤖 Orchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
+    
+    result = run_reason_agent(user_query=query, context=context, verbose=False)
+    print(f"🤖 Orchestrator: Reason Agent returned: '{result}'")
+    return result
