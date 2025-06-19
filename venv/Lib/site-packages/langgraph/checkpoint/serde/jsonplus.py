@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import dataclasses
 import decimal
 import importlib
@@ -5,6 +7,7 @@ import json
 import pathlib
 import pickle
 import re
+import sys
 from collections import deque
 from collections.abc import Sequence
 from datetime import date, datetime, time, timedelta, timezone
@@ -18,13 +21,13 @@ from ipaddress import (
     IPv6Interface,
     IPv6Network,
 )
-from typing import Any, Callable, Optional, Union, cast
+from typing import Any, Callable, cast
 from uuid import UUID
+from zoneinfo import ZoneInfo
 
 import ormsgpack
 from langchain_core.load.load import Reviver
 from langchain_core.load.serializable import Serializable
-from zoneinfo import ZoneInfo
 
 from langgraph.checkpoint.serde.base import SerializerProtocol
 from langgraph.checkpoint.serde.types import SendProtocol
@@ -41,7 +44,7 @@ class JsonPlusSerializer(SerializerProtocol):
         self,
         *,
         pickle_fallback: bool = False,
-        __unpack_ext_hook__: Optional[Callable[[int, bytes], Any]] = None,
+        __unpack_ext_hook__: Callable[[int, bytes], Any] | None = None,
     ) -> None:
         self.pickle_fallback = pickle_fallback
         self._unpack_ext_hook = (
@@ -52,11 +55,11 @@ class JsonPlusSerializer(SerializerProtocol):
 
     def _encode_constructor_args(
         self,
-        constructor: Union[Callable, type[Any]],
+        constructor: Callable | type[Any],
         *,
-        method: Union[None, str, Sequence[Union[None, str]]] = None,
-        args: Optional[Sequence[Any]] = None,
-        kwargs: Optional[dict[str, Any]] = None,
+        method: None | str | Sequence[None | str] = None,
+        args: Sequence[Any] | None = None,
+        kwargs: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         out = {
             "lc": 2,
@@ -71,7 +74,7 @@ class JsonPlusSerializer(SerializerProtocol):
             out["kwargs"] = kwargs
         return out
 
-    def _default(self, obj: Any) -> Union[str, dict[str, Any]]:
+    def _default(self, obj: Any) -> str | dict[str, Any]:
         if isinstance(obj, Serializable):
             return cast(dict[str, Any], obj.to_json())
         elif hasattr(obj, "model_dump") and callable(obj.model_dump):
@@ -249,9 +252,10 @@ EXT_CONSTRUCTOR_KW_ARGS = 2
 EXT_METHOD_SINGLE_ARG = 3
 EXT_PYDANTIC_V1 = 4
 EXT_PYDANTIC_V2 = 5
+EXT_NUMPY_ARRAY = 6
 
 
-def _msgpack_default(obj: Any) -> Union[str, ormsgpack.Ext]:
+def _msgpack_default(obj: Any) -> str | ormsgpack.Ext:
     if hasattr(obj, "model_dump") and callable(obj.model_dump):  # pydantic v2
         return ormsgpack.Ext(
             EXT_PYDANTIC_V2,
@@ -316,13 +320,6 @@ def _msgpack_default(obj: Any) -> Union[str, ormsgpack.Ext]:
             EXT_CONSTRUCTOR_SINGLE_ARG,
             _msgpack_enc(
                 (obj.__class__.__module__, obj.__class__.__name__, obj.hex),
-            ),
-        )
-    elif isinstance(obj, bytearray):
-        return ormsgpack.Ext(
-            EXT_CONSTRUCTOR_SINGLE_ARG,
-            _msgpack_enc(
-                (obj.__class__.__module__, obj.__class__.__name__, bytes(obj)),
             ),
         )
     elif isinstance(obj, decimal.Decimal):
@@ -463,6 +460,22 @@ def _msgpack_default(obj: Any) -> Union[str, ormsgpack.Ext]:
                 ),
             ),
         )
+    elif (np_mod := sys.modules.get("numpy")) is not None and isinstance(
+        obj, np_mod.ndarray
+    ):
+        order = "F" if obj.flags.f_contiguous and not obj.flags.c_contiguous else "C"
+        if obj.flags.c_contiguous:
+            mv = memoryview(obj)
+            try:
+                meta = (obj.dtype.str, obj.shape, order, mv)
+                return ormsgpack.Ext(EXT_NUMPY_ARRAY, _msgpack_enc(meta))
+            finally:
+                mv.release()
+        else:
+            buf = obj.tobytes(order="A")
+            meta = (obj.dtype.str, obj.shape, order, buf)
+            return ormsgpack.Ext(EXT_NUMPY_ARRAY, _msgpack_enc(meta))
+
     elif isinstance(obj, BaseException):
         return repr(obj)
     else:
@@ -544,6 +557,17 @@ def _msgpack_ext_hook(code: int, data: bytes) -> Any:
                 return tup[2]
             except NameError:
                 return
+    elif code == EXT_NUMPY_ARRAY:
+        try:
+            import numpy as _np
+
+            dtype_str, shape, order, buf = ormsgpack.unpackb(
+                data, ext_hook=_msgpack_ext_hook, option=ormsgpack.OPT_NON_STR_KEYS
+            )
+            arr = _np.frombuffer(buf, dtype=_np.dtype(dtype_str))
+            return arr.reshape(shape, order=order)
+        except Exception:
+            return
 
 
 def _msgpack_ext_hook_to_json(code: int, data: bytes) -> Any:
@@ -622,6 +646,19 @@ def _msgpack_ext_hook_to_json(code: int, data: bytes) -> Any:
             )
             # module, name, kwargs, method
             return tup[2]
+        except Exception:
+            return
+    elif code == EXT_NUMPY_ARRAY:
+        try:
+            import numpy as _np
+
+            dtype_str, shape, order, buf = ormsgpack.unpackb(
+                data,
+                ext_hook=_msgpack_ext_hook_to_json,
+                option=ormsgpack.OPT_NON_STR_KEYS,
+            )
+            arr = _np.frombuffer(buf, dtype=_np.dtype(dtype_str))
+            return arr.reshape(shape, order=order).tolist()
         except Exception:
             return
 

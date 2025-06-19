@@ -1,6 +1,10 @@
 import requests
 import re
 from bs4 import BeautifulSoup
+# Removing circular import
+# from agents.sub_agent_search import run_search_agent
+
+
 
 
 WIKI_API_URL = "https://en.wikipedia.org/w/api.php"
@@ -147,21 +151,24 @@ def get_multiple_sections_content(pageid, section_indices):
     
     return sections_content
 
-## Exmple usage:
-# Uncomment the following lines to run the example usage
-# if __name__ == "__main__":
-#     query = "quantum entanglement"
 
-#     # Step 1
-#     search_results = search_wikipedia(query)
-#     print("Search Results:")
-#     for res in search_results:
-#         print(f"- {res['title']} (pageid={res['pageid']})\n  → {res['snippet']}")
-
-#    # Step 2: (Pretend agent picks one)
-#     chosen_pageid = search_results[0]['pageid']
- 
-#     content_html = get_wikipedia_content(chosen_pageid)
-#     clean_content_html = clean_page_html(content_html)
-#     #print("\nRaw Wikipedia Page HTML:\n", content_html[:1000])
-#     print("\nFull Wikipedia Page Content:\n", clean_content_html)
+def call_search_agent(query, context) -> str:
+    """
+    Invokes the search agent to find information, search the web or Wikipedia, or look up facts.
+    Use this for questions like 'What is the capital of France?', 'Summarize the Wikipedia page for AI', 'What is the current weather in Paris?'.
+    Args:
+        query: The specific question or search term for the search agent.
+        context: Optional additional context for the search agent.
+    Returns:
+        The result from the search agent.
+    """
+    if context is None:
+        context = {}
+    print(f"\n🤖 Orchestrator: Calling Search Agent with query: '{query}' and context: {context}")
+    
+    # Import here to avoid circular dependencies
+    from agents.sub_agent_search import run_search_agent
+    
+    result = run_search_agent(user_query=query, context=context, verbose=False)
+    print(f"🤖 Orchestrator: Search Agent returned: '{result}'")
+    return result
