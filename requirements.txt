@@ -8,6 +8,7 @@ requests
 python-dotenv
 bs4
 langgraph-checkpoint-sqlite
+chainlit
 
 #MCP
 mcp[cli]
