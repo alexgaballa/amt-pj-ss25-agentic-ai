@@ -1,15 +1,16 @@
 """Tool wrappers for MCP integration with proper type hints."""
 from mcp.server.fastmcp import FastMCP
-from typing import List, Dict, Union, Tuple
+from typing import List, Dict, Union, Tuple, Optional
 
 """Calculate tools imports"""
+# Use relative import to refer to the local calculate.py file
 from calculate import (
     convert_units, add, subtract, multiply, divide,
     calculate_years_between, calculate_days_between, calculate_mean,
     calculate_median, calculate_std_dev, calculate_range,
     evaluate_expression, solve_equation, calculate_age,
     count_word_occurrences, estimate_reading_time,
-    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles
+    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles, run_reason_agent
 )
 
 """Wiki-search tool imports"""
@@ -183,7 +184,18 @@ def evaluate_expression_tool(expression: str) -> float:
 def solve_equation_tool(equation_str: str, target_var: str) -> str:
     """Solve a symbolic equation for a target variable."""
     return solve_equation(equation_str, target_var)
+
+@mcp.tool()
+def call_reason_agent_tool(query: str, context: Optional[dict] = None) -> str:
+    """Call the reasoning agent to perform calculations or analysis.
     
+    Args:
+        query: The specific question or calculation request
+        context: Optional additional context for the agent"""
+    return run_reason_agent(query, context)
+
+
+
 # ==============================================================================
 #                               Wiki-Search Tools
 # ==============================================================================
@@ -276,15 +288,6 @@ def call_search_agent_tool(query, context) -> str:
 
 # to run the server --> mcp dev mcp_tools_server.py (inside of mcp_server_setup folder)
 # or python mcp_tools_server.py
+# run the server (do it from client code for prototype, not here)
 if __name__ == "__main__":
-    transport = "stdio"
-    # stdio for basic input/output streams on the same machine
-    if transport == "stdio":
-        print("Running in stdio mode")
-        mcp.run(transport= "stdio")
-    # remote connection across networks
-    elif transport == "sse":
-        print("Running in sse mode")
-        mcp.run(transport= "sse")
-    else:
-        raise ValueError("Invalid transport mode. Use 'stdio' or 'sse'.")
+    mcp.run(transport="stdio")
