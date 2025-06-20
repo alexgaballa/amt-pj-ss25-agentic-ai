@@ -118,12 +118,14 @@ async def main(message: cl.Message):
             initial_input = {"messages": context_messages}
             
             # Track the workflow execution with sub-steps
-            final_answer = "No answer found or an error occurred."
             step_count = 0
+            current_event = None
             
             # Stream through workflow execution
             for event in app.stream(initial_input, stream_mode="values"):
                 step_count += 1
+                current_event = event
+                
                 if "messages" in event and event["messages"]:
                     last_message = event["messages"][-1]
                     
@@ -138,9 +140,8 @@ async def main(message: cl.Message):
                     elif last_message.type == "ai" and last_message.content:
                         # AI reasoning step
                         if not (hasattr(last_message, 'tool_calls') and last_message.tool_calls):
-                            final_answer = last_message.content
                             async with cl.Step(name="🧠 Orchestrator Response", type="llm") as ai_step:
-                                ai_step.input = "Generating final response"
+                                ai_step.input = "Generating response"
                                 ai_step.output = last_message.content[:200] + ("..." if len(last_message.content) > 200 else "")
                     
                     elif last_message.type == "tool":
@@ -148,6 +149,16 @@ async def main(message: cl.Message):
                         async with cl.Step(name="📊 Tool Result", type="tool") as result_step:
                             result_step.input = f"Tool: {getattr(last_message, 'name', 'Unknown')}"
                             result_step.output = last_message.content[:200] + ("..." if len(last_message.content) > 200 else "")
+            
+            # Extract final answer after workflow completes 
+            final_answer = "No answer found or an error occurred."
+            final_state = current_event
+            if final_state and final_state.get("messages"):
+                # Iterate backwards to find the last AI message that is NOT a tool call
+                for message in reversed(final_state["messages"]):
+                    if message.type == "ai" and not (hasattr(message, "tool_calls") and message.tool_calls and len(message.tool_calls) > 0):
+                        final_answer = message.content
+                        break
             
             workflow_step.output = f"Workflow completed in {step_count} steps"
         
