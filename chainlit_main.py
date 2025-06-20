@@ -29,81 +29,52 @@ class AgentState(TypedDict):
 
 # --- Define Graph ---
 
-# Define step-based processing functions
-@cl.step(name="🔍 Search Agent", type="tool")
-async def search_agent_step(query: str):
-    """Execute search agent with COT display"""
-    try:
-        result = call_search_agent.invoke({"query": query})
-        # Ensure we return the actual content, not the tool result object
-        if hasattr(result, 'content'):
-            return result.content
-        elif isinstance(result, str):
-            return result
-        else:
-            return str(result)
-    except Exception as e:
-        return f"Search failed: {str(e)}"
+# Same workflow as main.py 
+def delay_node_before_tools(state: AgentState) -> AgentState:
+    return state
 
-@cl.step(name="🧮 Reasoning Agent", type="tool")
-async def reasoning_agent_step(query: str):
-    """Execute reasoning agent with COT display"""
-    try:
-        result = call_reason_agent.invoke({"query": query})
-        # Ensure we return the actual content, not the tool result object
-        if hasattr(result, 'content'):
-            return result.content
-        elif isinstance(result, str):
-            return result
-        else:
-            return str(result)
-    except Exception as e:
-        return f"Reasoning failed: {str(e)}"
+def delay_node_before_orchestrator_reentry(state: AgentState) -> AgentState:
+    return state
 
-@cl.step(name="🧠 Orchestrator Analysis", type="llm")
-async def orchestrator_analysis_step(user_query: str, conversation_context: list):
-    """Show orchestrator's planning and analysis process"""
-    # Analyze what needs to be done
-    needs_search = any(word in user_query.lower() for word in ["what", "who", "where", "find", "search", "wikipedia", "information"])
-    needs_reasoning = any(word in user_query.lower() for word in ["calculate", "solve", "math", "convert", "equation", "formula"])
-    
-    analysis = f"Analyzing query: '{user_query}'"
-    
-    plan = []
-    if needs_search:
-        plan.append("🔍 Will use Search Agent for information retrieval")
-    if needs_reasoning:
-        plan.append("🧮 Will use Reasoning Agent for calculations")
-    
-    if not plan:
-        plan.append("💬 Will provide direct response")
-    
-    planning_result = f"Analysis complete. Plan:\n" + "\n".join(f"• {p}" for p in plan)
-    
-    return {
-        "needs_search": needs_search,
-        "needs_reasoning": needs_reasoning,
-        "plan": planning_result
-    }
+workflow = StateGraph(AgentState)
 
-@cl.step(name="🎯 Final Synthesis", type="llm")
-async def synthesis_step(user_query: str, search_result: str = None, reasoning_result: str = None):
-    """Synthesize final answer from all results"""
-    results = []
-    if search_result:
-        results.append(f"Search findings: {search_result}")
-    if reasoning_result:
-        results.append(f"Calculation results: {reasoning_result}")
-    
-    if results:
-        synthesis = f"Combining results for '{user_query}':\n" + "\n".join(f"• {r}" for r in results)
-    else:
-        synthesis = f"Providing direct response to '{user_query}'"
-    
-    return synthesis
+# Add the orchestrator agent node
+workflow.add_node("orchestrator", orchestrator_agent_executor)
 
-# We'll use a simplified approach with Chainlit Steps instead of the complex workflow
-# This provides better COT visualization
+# Add the tool node for executing sub-agent calls
+tool_node = ToolNode(orchestrator_tools)
+workflow.add_node("tools", tool_node)
+
+# Add delay nodes (no actual delay in Chainlit version for better UX)
+workflow.add_node("delay_before_tools", delay_node_before_tools)
+workflow.add_node("delay_before_orchestrator", delay_node_before_orchestrator_reentry)
+
+# Set the entry point
+workflow.set_entry_point("orchestrator")
+
+# Define conditional edges
+def should_continue(state: AgentState) -> str:
+    last_message = state["messages"][-1]
+    if isinstance(last_message, AIMessage) and hasattr(last_message, "tool_calls") and last_message.tool_calls and len(last_message.tool_calls) > 0:
+        return "delay_before_tools"
+    return END
+
+workflow.add_conditional_edges(
+    "orchestrator",
+    should_continue,
+    {
+        "delay_before_tools": "delay_before_tools",
+        END: END,
+    },
+)
+
+# Add edges for the flow
+workflow.add_edge("delay_before_tools", "tools")
+workflow.add_edge("tools", "delay_before_orchestrator")
+workflow.add_edge("delay_before_orchestrator", "orchestrator")
+
+# Compile the workflow
+app = workflow.compile()
 
 @cl.on_chat_start
 async def start():
@@ -122,7 +93,7 @@ async def start():
 
 @cl.on_message
 async def main(message: cl.Message):
-    """Handle incoming messages with Chain of Thought display"""
+    """Handle incoming messages"""
     user_query = message.content
     
     # Get conversation memory
@@ -130,9 +101,6 @@ async def main(message: cl.Message):
     message_count = cl.user_session.get("message_count", 0)
     
     try:
-        # Step 1: Orchestrator Analysis (always shown)
-        analysis_result = await orchestrator_analysis_step(user_query, conversation_memory)
-        
         # Prepare conversation context
         context_messages = []
         for mem in conversation_memory[-5:]:
@@ -142,71 +110,46 @@ async def main(message: cl.Message):
                 context_messages.append(AIMessage(content=mem["content"]))
         context_messages.append(HumanMessage(content=user_query))
         
-        # Initialize results
-        search_result = None
-        reasoning_result = None
-        
-        # Step 2: Execute Search Agent if needed
-        if analysis_result["needs_search"]:
-            search_result = await search_agent_step(user_query)
-        
-        # Step 3: Execute Reasoning Agent if needed
-        if analysis_result["needs_reasoning"]:
-            reasoning_result = await reasoning_agent_step(user_query)
-        
-        # Step 4: Final Answer Generation
-        async with cl.Step(name="🤖 Orchestrator Final Answer", type="llm") as step:
-            if search_result or reasoning_result:
-                # Prepare comprehensive context with agent results
-                synthesis_prompt = f"User Query: {user_query}\n\n"
-                
-                if search_result:
-                    synthesis_prompt += f"Search Agent provided this information:\n{search_result}\n\n"
-                if reasoning_result:
-                    synthesis_prompt += f"Reasoning Agent calculated:\n{reasoning_result}\n\n"
-                
-                synthesis_prompt += "Please provide a comprehensive final answer that incorporates the above agent results to fully address the user's query."
-                
-                step.input = synthesis_prompt
-                
-                # Create enhanced context for orchestrator
-                synthesis_context = context_messages.copy()
-                synthesis_context.append(HumanMessage(content=synthesis_prompt))
-                
-                # Get orchestrator's final synthesis
-                orchestrator_input = {"messages": synthesis_context}
-                final_response = orchestrator_agent_executor.invoke(orchestrator_input)
-                
-                # Extract the final answer properly
-                if final_response and "messages" in final_response:
-                    last_message = final_response["messages"][-1]
-                    if hasattr(last_message, 'content') and last_message.content:
-                        final_answer = last_message.content
-                    else:
-                        final_answer = f"Based on the analysis: {synthesis_prompt}"
-                else:
-                    final_answer = f"I've analyzed your query and used the available agents to provide this response: {user_query}"
-                
-                step.output = final_answer
-            else:
-                # Direct response - let orchestrator handle it normally
-                step.input = f"Providing direct response to: {user_query}"
-                
-                # Use orchestrator for direct response with normal context
-                orchestrator_input = {"messages": context_messages}
-                final_response = orchestrator_agent_executor.invoke(orchestrator_input)
-                
-                # Extract final answer with better error handling
-                if final_response and "messages" in final_response:
-                    last_message = final_response["messages"][-1]
-                    if hasattr(last_message, 'content') and last_message.content:
-                        final_answer = last_message.content
-                    else:
-                        final_answer = f"I understand you're asking: {user_query}. Let me provide a direct response based on my knowledge."
-                else:
-                    final_answer = f"I'll help you with: {user_query}"
-                
-                step.output = final_answer
+        # Same workflow as main.py 
+        async with cl.Step(name="🤖 Orchestrator Workflow", type="llm") as workflow_step:
+            workflow_step.input = f"Processing query: {user_query}"
+            
+            # Prepare the input for the graph (same as main.py)
+            initial_input = {"messages": context_messages}
+            
+            # Track the workflow execution with sub-steps
+            final_answer = "No answer found or an error occurred."
+            step_count = 0
+            
+            # Stream through workflow execution
+            for event in app.stream(initial_input, stream_mode="values"):
+                step_count += 1
+                if "messages" in event and event["messages"]:
+                    last_message = event["messages"][-1]
+                    
+                    # Show different types of steps
+                    if hasattr(last_message, 'tool_calls') and last_message.tool_calls:
+                        # Tool call step
+                        tool_names = [tc['name'] for tc in last_message.tool_calls]
+                        async with cl.Step(name=f"🔧 Tool Execution: {', '.join(tool_names)}", type="tool") as tool_step:
+                            tool_step.input = f"Executing tools: {tool_names}"
+                            tool_step.output = "Tools executed successfully"
+                    
+                    elif last_message.type == "ai" and last_message.content:
+                        # AI reasoning step
+                        if not (hasattr(last_message, 'tool_calls') and last_message.tool_calls):
+                            final_answer = last_message.content
+                            async with cl.Step(name="🧠 Orchestrator Response", type="llm") as ai_step:
+                                ai_step.input = "Generating final response"
+                                ai_step.output = last_message.content[:200] + ("..." if len(last_message.content) > 200 else "")
+                    
+                    elif last_message.type == "tool":
+                        # Tool result step
+                        async with cl.Step(name="📊 Tool Result", type="tool") as result_step:
+                            result_step.input = f"Tool: {getattr(last_message, 'name', 'Unknown')}"
+                            result_step.output = last_message.content[:200] + ("..." if len(last_message.content) > 200 else "")
+            
+            workflow_step.output = f"Workflow completed in {step_count} steps"
         
         # Send final answer
         await cl.Message(content=final_answer).send()
