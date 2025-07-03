@@ -14,7 +14,7 @@ load_dotenv()
 orchestrator_tools = [call_search_agent, call_reason_agent]
 
 # Initialize the LLM for the orchestrator
-orchestrator_llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.2)
+orchestrator_llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
 
 # Define the prompt for the orchestrator agent
 orchestrator_system_prompt = """\\
@@ -34,7 +34,7 @@ Your process should be:
 7.  **Respond**: Provide this final synthesized answer directly as your response. Do NOT call any more tools once you are ready to give the final answer. Your last message should be the complete answer.
 
 IMPORTANT:
-- When you call a specialist agent, the query you provide to it should be self-contained and clear.
+- When you call a specialist agent, the query you provide to it should be self-contained and clear. The query provided to the search_agent MUST be the exact same as the original user query, ONLY under absolutely necessary circumstances are you allowed to slightly adjust it.
 - Pay attention to the conversation history (available in `messages`) to keep track of previous interactions and results from specialist agents. This is crucial for multi-step queries.
 - If the user's query is simple and can be handled by a single call to a specialist agent, do so and then present its result (or a slightly rephrased version if needed) as the final answer.
 - Your final output to the user must be the answer itself, not a message saying you are about to answer or a call to another tool.

@@ -12,7 +12,7 @@ load_dotenv()
 # Create the agent executor with the LLM and tools
 tools = [search_wikipedia_tool, get_wikipedia_content_tool, get_page_sections_tool, get_section_content_tool, get_multiple_sections_content_tool]
 memory = MemorySaver()
-model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.2)
+model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
  
 # Bind the tools to the model
 #model_with_tools = model.bind_tools(tools)
@@ -51,7 +51,7 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
     You are a research assistant that can search for information on Wikipedia.
     
     TASK: 
-    1. Search Wikipedia for information about: "{user_query}"
+    1. Search Wikipedia for information about: "{user_query}", use keywords.
     2. Review the search results and select the MOST relevant article by its page ID
     3. Use the get_page_sections_tool with the selected page ID to identify relevant sections of the article
     4. Identify the most relevant sections for answering the query (always include section '0' which is the introduction)
@@ -63,6 +63,18 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
     to get the most pertinent information. Using get_multiple_sections_content_tool is more efficient than calling 
     get_section_content_tool multiple times.
     
+    Available tools:
+    - `search_wikipedia_tool`: Search Wikipedia for articles related to the query
+    - `get_wikipedia_content_tool`: Retrieve the full content of a Wikipedia page by its ID
+    - `get_page_sections_tool`: Get the sections of a Wikipedia page by its ID
+    - `get_section_content_tool`: Get the content of a specific section of a Wikipedia page
+    - `get_multiple_sections_content_tool`: Get the content of multiple sections of a Wikipedia page by its ID and section indices
+
+    - Hint:
+    -- If a query is about a specific date or event, try to narrow down the topic based on location or time and then go through the content of the most relevant section within that page.
+    For example if the query is about a specific event in Berlin, you might want to focus on the 'History' section of the Berlin Wikipedia page. Use this logic for other query topics as well. Take your time to reason.
+    -- If the query asks for a section of a Wikipedia page, retrieve the section content directly using the `get_section_content_tool` or `get_multiple_sections_content_tool` with the appropriate section index. Return the text content as it is written on wikipedia.
+
     Additional context: {context}
     """
     
@@ -96,7 +108,10 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
 if __name__ == "__main__":
     # This will only run when the file is executed directly, not when imported
     result = run_search_agent(
-        user_query="Whats the population of Berlin according to wikipedia",
+        # user_query="Please provide me with the exact first part of the Economy section on the Berlin wikipedia page. Cite it in your answer.",
+        #user_query="the exact first part of the Economy section on the Berlin wikipedia page.",
+        user_query="the exact first part of the Economy section on the Berlin wikipedia page!",
+        # user_query="Berlin wikipedia page Economy section first part",
         context={"source_preference": "Always use Wikipedia as your primary source"},
         verbose=True  # Set to True to see the entire conversation
     )
