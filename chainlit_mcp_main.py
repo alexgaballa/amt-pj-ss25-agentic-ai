@@ -133,8 +133,8 @@ async def main(message: cl.Message):
             async for event in app.astream(initial_input, stream_mode="values"):
                 step_count += 1
                 current_event = event
-                # Log the event for debugging, comment out if not needed
-                print("🧪 ToolNode executed:", event)
+                # Log the event for debugging in terminal (further debugging available in mcp_debug.log), comment out if not needed
+                # print("🧪 ToolNode executed:", event)
                 
                 if "messages" in event and event["messages"]:
                     last_message = event["messages"][-1]
