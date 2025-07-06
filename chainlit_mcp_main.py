@@ -1,17 +1,17 @@
-import os
 import sys
-from typing import TypedDict, Annotated, List, Optional
+import os
+from typing import TypedDict, Annotated, List
 from langchain_core.messages import HumanMessage, BaseMessage, AIMessage
 import operator
 from dotenv import load_dotenv
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 import chainlit as cl
-from agents.orchestrator_agent import orchestrator_agent_executor
-from tools.tool_wrappers import (
-    call_search_agent,
-    call_reason_agent,
-)
+from agents.mcp_orchestrator_agent import orchestrator_agent_executor
+from mcp_server_setup.mcp_tool_loader import get_mcp_tools
+
+#mcp imports
+import asyncio
 
 # Ensure the project root is in the Python path for imports
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +20,15 @@ if project_root not in sys.path:
 
 # Load environment variables (e.g., GOOGLE_API_KEY)
 load_dotenv()
-orchestrator_tools = [call_search_agent, call_reason_agent]
+
+orchestrator_tools = asyncio.run(get_mcp_tools([
+    "call_search_agent",
+    "call_reason_agent",
+]))
+print("Loaded tools:", orchestrator_tools)
+
+for t in orchestrator_tools:
+    print(f"Tool name: {t.name}, description: {t.description}")
 
 # --- Define State ---
 class AgentState(TypedDict):

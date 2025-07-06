@@ -38,7 +38,7 @@ tools = [
 ]
 
 memory = MemorySaver()
-model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, memory=memory)
+model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0, memory=memory)
 
 # Ensure tools are passed correctly to the agent
 agent_executor = create_react_agent(model, tools)

@@ -91,7 +91,10 @@ if __name__ == "__main__":
     print("Orchestrator is ready. Testing with sample queries...")
 
     queries = [
-        # "What is the current population of the capital of Germany? And, assuming the average weight of 70 kg calculate the total weight of that population.",
+        #"What is the current population of the capital of Germany? And, assuming the average weight of 70 kg calculate the total weight of that population.",
+        "Please proivde me with the exact first part of the Economy section on the Berlin wikipedia page. Cite it in your answer.",
+        #"Did any special event happen on the 18 June 1994 in Berlin according to wikipedia page of Berlin?"
+        #"Which regioned do the Protestant congregations in Königs Wusterhausen make up?"
         # "Convert 150 pounds to kilograms. Then, find a Wikipedia article about 'Artificial Intelligence' and summarize its introduction.",
         # "What is the square root of 144 plus the square root of 169?",
         # "Find the current weather in London. Separately, what is 2 to the power of 10?"
@@ -100,10 +103,10 @@ if __name__ == "__main__":
     test_queries = [
         #"Convert 25 parsecs to gallons. Then, find a Wikipedia article about 'Quantum Computing' and summarize its introduction.",
         # "How old was Marie Curie when she received her second Nobel Prize?",
-        "Solve the equation F = m * a for m when F = 98 and a = 9.8"
+        # "Solve the equation F = m * a for m when F = 98 and a = 9.8"
     ]
 
-    for i, query in enumerate(test_queries):
+    for i, query in enumerate(queries):
         print(f"\\n--- Test Query {i+1} ---")
         print(f"🚀 Invoking orchestrator with query: '{query}'")
 

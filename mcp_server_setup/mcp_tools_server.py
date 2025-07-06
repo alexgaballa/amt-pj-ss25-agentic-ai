@@ -10,7 +10,7 @@ from calculate import (
     calculate_median, calculate_std_dev, calculate_range,
     evaluate_expression, solve_equation, calculate_age,
     count_word_occurrences, estimate_reading_time,
-    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles, run_reason_agent
+    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles, call_reason_agent
 )
 
 """Wiki-search tool imports"""
@@ -19,6 +19,21 @@ from wiki_search import (
     get_page_sections, get_section_content, get_multiple_sections_content, call_search_agent
 )
 
+import logging
+import os
+# Set up logging
+log_file_path = os.path.join(os.getcwd(), "mcp_debug.log")
+
+logging.basicConfig(
+    filename=log_file_path,
+    filemode='a',  # append mode
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    force=True 
+)
+
+logger = logging.getLogger(__name__)
+logger.info("Logging initialized.")
 # Create a MCP server instance
 mcp = FastMCP(
     name = "MCP-Tool-Server",
@@ -186,15 +201,26 @@ def solve_equation_tool(equation_str: str, target_var: str) -> str:
     return solve_equation(equation_str, target_var)
 
 @mcp.tool()
-def call_reason_agent_tool(query: str, context: Optional[dict] = None) -> str:
-    """Call the reasoning agent to perform calculations or analysis.
-    
+def call_reason_agent(query: str, context: Optional[dict] = None) -> str:
+    """
+    Invokes the reason agent for calculations, unit conversions, date manipulations, logical reasoning, or solving math expressions.
+    Use this for questions like 'What is 2+2?', 'Convert 100 miles to km', 'How old am I if born on Jan 1, 2000?'.
     Args:
-        query: The specific question or calculation request
-        context: Optional additional context for the agent"""
-    return run_reason_agent(query, context)
-
-
+        query: The specific problem or question for the reason agent.
+        context: Optional additional context for the reason agent.
+    Returns:
+        The result from the reason agent.
+    """
+    if context is None:
+        context = {}
+    print(f"\nOrchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
+    
+    # Import here to avoid circular dependencies
+    from agents.sub_agent_reason import run_reason_agent
+    
+    result = run_reason_agent(user_query=query, context=context, verbose=False)
+    print(f"Orchestrator: Reason Agent returned: '{result}'")
+    return result
 
 # ==============================================================================
 #                               Wiki-Search Tools
@@ -274,7 +300,7 @@ def get_multiple_sections_content_tool(page_id: int, section_indices: List[str])
     return get_multiple_sections_content(page_id, section_indices)
 
 @mcp.tool()
-def call_search_agent_tool(query, context) -> str:
+def call_search_agent(query: str, context: Optional[dict] = None) -> str:
     """
     Invokes the search agent to find information, search the web or Wikipedia, or look up facts.
     Use this for questions like 'What is the capital of France?', 'Summarize the Wikipedia page for AI', 'What is the current weather in Paris?'.
@@ -284,7 +310,16 @@ def call_search_agent_tool(query, context) -> str:
     Returns:
         The result from the search agent.
     """
-    return call_search_agent(query, context)
+    if context is None:
+        context = {}
+    print(f"\nOrchestrator: Calling Search Agent with query: '{query}' and context: {context}")
+    
+    # Import here to avoid circular dependencies
+    from agents.sub_agent_search import run_search_agent
+    
+    result = run_search_agent(user_query=query, context=context, verbose=False)
+    print(f"Orchestrator: Search Agent returned: '{result}'")
+    return result
 
 # to run the server --> mcp dev mcp_tools_server.py (inside of mcp_server_setup folder)
 # or python mcp_tools_server.py
