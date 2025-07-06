@@ -9,6 +9,7 @@ from langgraph.prebuilt import ToolNode
 import chainlit as cl
 from agents.mcp_orchestrator_agent import orchestrator_agent_executor
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
+import io
 
 #mcp imports
 import asyncio
@@ -25,10 +26,10 @@ orchestrator_tools = asyncio.run(get_mcp_tools([
     "call_search_agent",
     "call_reason_agent",
 ]))
-print("Loaded tools:", orchestrator_tools)
 
-for t in orchestrator_tools:
-    print(f"Tool name: {t.name}, description: {t.description}")
+print("🔍 MCP debug log is being written to:")
+print("    → ./mcp_debug.log")
+print("📂 (Located in the root directory where you started this script.)")
 
 # --- Define State ---
 class AgentState(TypedDict):
@@ -129,9 +130,11 @@ async def main(message: cl.Message):
             current_event = None
             
             # Stream through workflow execution
-            for event in app.stream(initial_input, stream_mode="values"):
+            async for event in app.astream(initial_input, stream_mode="values"):
                 step_count += 1
                 current_event = event
+                # Log the event for debugging, comment out if not needed
+                print("🧪 ToolNode executed:", event)
                 
                 if "messages" in event and event["messages"]:
                     last_message = event["messages"][-1]

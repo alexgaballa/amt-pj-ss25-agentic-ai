@@ -263,3 +263,804 @@
 2025-07-05 13:34:20,342 - INFO - Processing request of type ListToolsRequest
 2025-07-05 13:34:20,342 - DEBUG - Dispatching request of type ListToolsRequest
 2025-07-05 13:34:20,343 - DEBUG - Response sent
+2025-07-06 11:27:59,073 - INFO - Logging initialized.
+2025-07-06 11:27:59,079 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:27:59,079 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:27:59,080 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:27:59,080 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:27:59,080 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:27:59,080 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:27:59,080 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:27:59,081 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:27:59,148 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:27:59,159 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:27:59,160 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002867CE62D50>
+2025-07-06 11:27:59,160 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:27:59,161 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:27:59,162 - DEBUG - Response sent
+2025-07-06 11:28:02,378 - INFO - Logging initialized.
+2025-07-06 11:28:02,384 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:28:02,385 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:28:02,385 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:28:02,385 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:28:02,385 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:28:02,386 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:28:02,386 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:28:02,386 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:28:02,471 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:28:02,482 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:28:02,483 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000209A51E2D50>
+2025-07-06 11:28:02,483 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:28:02,484 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:28:02,485 - DEBUG - Response sent
+2025-07-06 11:35:10,304 - INFO - Logging initialized.
+2025-07-06 11:35:10,310 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:35:10,310 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:35:10,311 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:35:10,311 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:35:10,311 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:35:10,311 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:35:10,312 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:35:10,312 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:35:10,378 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:35:10,388 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:35:10,389 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000016D8E5C2D50>
+2025-07-06 11:35:10,389 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:35:10,389 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:35:10,390 - DEBUG - Response sent
+2025-07-06 11:35:13,411 - INFO - Logging initialized.
+2025-07-06 11:35:13,416 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:35:13,416 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:35:13,477 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:35:13,486 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:35:13,487 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000014C76872D50>
+2025-07-06 11:35:13,487 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:35:13,487 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:35:13,489 - DEBUG - Response sent
+2025-07-06 11:37:22,401 - INFO - Logging initialized.
+2025-07-06 11:37:22,406 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:37:22,406 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:37:22,472 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:37:22,483 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:37:22,485 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002099D922D50>
+2025-07-06 11:37:22,485 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:37:22,485 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:37:22,487 - DEBUG - Response sent
+2025-07-06 11:37:25,480 - INFO - Logging initialized.
+2025-07-06 11:37:25,485 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 11:37:25,485 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 11:37:25,485 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 11:37:25,485 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 11:37:25,486 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 11:37:25,486 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 11:37:25,486 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 11:37:25,486 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 11:37:25,554 - DEBUG - Using proactor: IocpProactor
+2025-07-06 11:37:25,562 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 11:37:25,563 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001C345582D50>
+2025-07-06 11:37:25,563 - INFO - Processing request of type ListToolsRequest
+2025-07-06 11:37:25,563 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 11:37:25,564 - DEBUG - Response sent
+2025-07-06 12:49:09,213 - INFO - Logging initialized.
+2025-07-06 12:49:09,219 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:49:09,219 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:49:09,219 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:49:09,219 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:49:09,220 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:49:09,220 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:49:09,220 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:49:09,220 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:49:09,284 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:49:09,293 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:49:09,294 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001F157092D50>
+2025-07-06 12:49:09,295 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:49:09,295 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:49:09,297 - DEBUG - Response sent
+2025-07-06 12:49:12,393 - INFO - Logging initialized.
+2025-07-06 12:49:12,397 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:49:12,398 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:49:12,398 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:49:12,398 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:49:12,398 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:49:12,399 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:49:12,399 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:49:12,400 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:49:12,490 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:49:12,503 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:49:12,505 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001DA219F2D50>
+2025-07-06 12:49:12,505 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:49:12,506 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:49:12,508 - DEBUG - Response sent
+2025-07-06 12:49:36,907 - INFO - Logging initialized.
+2025-07-06 12:49:36,914 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:49:36,914 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:49:36,915 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:49:36,915 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:49:36,915 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:49:36,916 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:49:36,916 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:49:36,916 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:49:36,990 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:49:37,002 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:49:37,003 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001EA7D1C2D50>
+2025-07-06 12:49:37,003 - INFO - Processing request of type CallToolRequest
+2025-07-06 12:49:37,004 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 12:49:37,004 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 12:49:40,119 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:49:40,623 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke+birthday+wikipedia&format=json HTTP/1.1" 200 None
+2025-07-06 12:49:41,152 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:49:41,548 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke&format=json HTTP/1.1" 200 None
+2025-07-06 12:49:42,532 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:49:42,875 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&prop=sections&format=json HTTP/1.1" 200 838
+2025-07-06 12:49:43,413 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:49:44,707 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=0&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:49:44,734 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:49:45,294 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=2&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:49:45,875 - DEBUG - Response sent
+2025-07-06 12:49:45,879 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001EA7D1C3750>
+2025-07-06 12:49:45,880 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:49:45,880 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:49:45,881 - DEBUG - Response sent
+2025-07-06 12:50:16,731 - INFO - Logging initialized.
+2025-07-06 12:50:16,736 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:50:16,737 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:50:16,800 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:50:16,810 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:50:16,814 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001CDF1A22D50>
+2025-07-06 12:50:16,814 - INFO - Processing request of type CallToolRequest
+2025-07-06 12:50:16,814 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 12:50:16,814 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 12:50:20,265 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:20,859 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=O.S.+dates+meaning&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:21,742 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:22,075 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=888602&prop=sections&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:22,849 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:23,682 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=888602&section=0&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:23,691 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:24,129 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=888602&section=1&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:24,135 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:25,027 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=888602&section=2&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:25,067 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 12:50:25,843 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=888602&section=3&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 12:50:27,561 - DEBUG - Response sent
+2025-07-06 12:50:27,564 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001CDF1A23750>
+2025-07-06 12:50:27,565 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:50:27,566 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:50:27,567 - DEBUG - Response sent
+2025-07-06 12:50:46,619 - INFO - Logging initialized.
+2025-07-06 12:50:46,624 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:50:46,624 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:50:46,624 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:50:46,625 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:50:46,625 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:50:46,625 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:50:46,625 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:50:46,625 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:50:46,697 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:50:46,707 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:50:46,708 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001F03F0E2D50>
+2025-07-06 12:50:46,709 - INFO - Processing request of type CallToolRequest
+2025-07-06 12:50:46,709 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 12:50:46,709 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 12:50:51,435 - DEBUG - Response sent
+2025-07-06 12:50:51,438 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001F03F0E3750>
+2025-07-06 12:50:51,438 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:50:51,439 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:50:51,440 - DEBUG - Response sent
+2025-07-06 12:53:43,403 - INFO - Logging initialized.
+2025-07-06 12:53:43,410 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:53:43,411 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:53:43,411 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:53:43,411 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:53:43,411 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:53:43,412 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:53:43,412 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:53:43,412 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:53:43,483 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:53:43,493 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:53:43,494 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000028CC1062D50>
+2025-07-06 12:53:43,494 - INFO - Processing request of type CallToolRequest
+2025-07-06 12:53:43,495 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 12:53:43,495 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 12:53:48,192 - DEBUG - Response sent
+2025-07-06 12:53:48,196 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000028CC1063750>
+2025-07-06 12:53:48,197 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:53:48,197 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:53:48,198 - DEBUG - Response sent
+2025-07-06 12:55:44,466 - INFO - Logging initialized.
+2025-07-06 12:55:44,472 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:55:44,473 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:55:44,473 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:55:44,473 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:55:44,474 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:55:44,474 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:55:44,474 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:55:44,475 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:55:44,544 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:55:44,553 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:55:44,554 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000020325EF2D50>
+2025-07-06 12:55:44,554 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:55:44,555 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:55:44,557 - DEBUG - Response sent
+2025-07-06 12:55:47,842 - INFO - Logging initialized.
+2025-07-06 12:55:47,847 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:55:47,847 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:55:47,922 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:55:47,931 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:55:47,932 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002C731CA2D50>
+2025-07-06 12:55:47,932 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:55:47,932 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:55:47,934 - DEBUG - Response sent
+2025-07-06 12:56:16,161 - INFO - Logging initialized.
+2025-07-06 12:56:16,165 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:56:16,166 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:56:16,234 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:56:16,245 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:56:16,246 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001FE41AA2D50>
+2025-07-06 12:56:16,246 - INFO - Processing request of type CallToolRequest
+2025-07-06 12:56:16,246 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 12:56:16,246 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 12:56:21,714 - DEBUG - Response sent
+2025-07-06 12:56:21,717 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001FE41AA3750>
+2025-07-06 12:56:21,718 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:56:21,718 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:56:21,719 - DEBUG - Response sent
+2025-07-06 12:59:04,722 - INFO - Logging initialized.
+2025-07-06 12:59:04,727 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:59:04,727 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:59:04,727 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:59:04,728 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:59:04,728 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:59:04,728 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:59:04,728 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:59:04,729 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:59:04,788 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:59:04,797 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:59:04,798 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001F1623E2D50>
+2025-07-06 12:59:04,798 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:59:04,798 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:59:04,799 - DEBUG - Response sent
+2025-07-06 12:59:07,759 - INFO - Logging initialized.
+2025-07-06 12:59:07,763 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:59:07,764 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:59:07,826 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:59:07,835 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:59:07,836 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000027F176C2D50>
+2025-07-06 12:59:07,837 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:59:07,837 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:59:07,838 - DEBUG - Response sent
+2025-07-06 12:59:45,538 - INFO - Logging initialized.
+2025-07-06 12:59:45,543 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:59:45,543 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:59:45,543 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:59:45,543 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:59:45,543 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:59:45,543 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:59:45,544 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:59:45,544 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:59:45,604 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:59:45,613 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:59:45,614 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000029D8DFC2D50>
+2025-07-06 12:59:45,615 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:59:45,615 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:59:45,616 - DEBUG - Response sent
+2025-07-06 12:59:48,657 - INFO - Logging initialized.
+2025-07-06 12:59:48,661 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 12:59:48,661 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 12:59:48,661 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 12:59:48,661 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 12:59:48,661 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 12:59:48,662 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 12:59:48,662 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 12:59:48,662 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 12:59:48,728 - DEBUG - Using proactor: IocpProactor
+2025-07-06 12:59:48,737 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 12:59:48,738 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000221CD7C2D50>
+2025-07-06 12:59:48,738 - INFO - Processing request of type ListToolsRequest
+2025-07-06 12:59:48,738 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 12:59:48,740 - DEBUG - Response sent
+2025-07-06 13:00:27,411 - INFO - Logging initialized.
+2025-07-06 13:00:27,420 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:00:27,420 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:00:27,488 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:00:27,497 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:00:27,497 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000019BB3882D50>
+2025-07-06 13:00:27,498 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:00:27,498 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:00:27,498 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 13:00:32,546 - DEBUG - Response sent
+2025-07-06 13:00:32,549 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000019BB3883750>
+2025-07-06 13:00:32,549 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:00:32,550 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:00:32,551 - DEBUG - Response sent
+2025-07-06 13:02:53,230 - INFO - Logging initialized.
+2025-07-06 13:02:53,235 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:02:53,236 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:02:53,236 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:02:53,236 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:02:53,236 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:02:53,236 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:02:53,237 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:02:53,237 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:02:53,305 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:02:53,316 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:02:53,317 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001E5A3ED2D50>
+2025-07-06 13:02:53,318 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:02:53,318 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:02:53,320 - DEBUG - Response sent
+2025-07-06 13:02:56,522 - INFO - Logging initialized.
+2025-07-06 13:02:56,527 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:02:56,528 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:02:56,528 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:02:56,528 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:02:56,528 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:02:56,529 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:02:56,530 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:02:56,530 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:02:56,601 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:02:56,610 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:02:56,612 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001A0D87B2D50>
+2025-07-06 13:02:56,613 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:02:56,613 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:02:56,615 - DEBUG - Response sent
+2025-07-06 13:03:18,463 - INFO - Logging initialized.
+2025-07-06 13:03:18,469 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:18,469 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:18,469 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:18,470 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:18,470 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:18,470 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:18,470 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:18,470 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:18,538 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:18,547 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:18,549 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000213C4BA2D50>
+2025-07-06 13:03:18,549 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:18,549 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:18,550 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:03:18,551 - DEBUG - Response sent
+2025-07-06 13:03:22,339 - INFO - Logging initialized.
+2025-07-06 13:03:22,345 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:22,345 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:22,346 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:22,346 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:22,346 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:22,347 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:22,347 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:22,347 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:22,420 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:22,431 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:22,433 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001D24EC82D50>
+2025-07-06 13:03:22,433 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:22,434 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:22,434 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:03:22,435 - DEBUG - Response sent
+2025-07-06 13:03:25,942 - INFO - Logging initialized.
+2025-07-06 13:03:25,948 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:25,949 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:25,949 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:25,950 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:25,950 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:25,950 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:25,950 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:25,951 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:26,026 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:26,037 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:26,038 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001CC47002D50>
+2025-07-06 13:03:26,039 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:26,039 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:26,039 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:03:26,040 - DEBUG - Response sent
+2025-07-06 13:03:29,600 - INFO - Logging initialized.
+2025-07-06 13:03:29,605 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:29,606 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:29,671 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:29,679 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:29,680 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001C4CEA32D50>
+2025-07-06 13:03:29,680 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:29,681 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:29,681 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:03:29,682 - DEBUG - Response sent
+2025-07-06 13:03:33,437 - INFO - Logging initialized.
+2025-07-06 13:03:33,441 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:33,442 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:33,506 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:33,515 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:33,516 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002BF7B552D50>
+2025-07-06 13:03:33,517 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:33,517 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:33,517 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:03:33,518 - DEBUG - Response sent
+2025-07-06 13:03:37,288 - INFO - Logging initialized.
+2025-07-06 13:03:37,293 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:03:37,293 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:03:37,371 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:03:37,380 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:03:37,381 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000024DF1272D50>
+2025-07-06 13:03:37,382 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:03:37,382 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:03:37,382 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 13:03:37,384 - DEBUG - Response sent
+2025-07-06 13:06:23,689 - INFO - Logging initialized.
+2025-07-06 13:06:23,694 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:06:23,695 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:06:23,758 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:06:23,768 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:06:23,769 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000026C9CD5B110>
+2025-07-06 13:06:23,769 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:06:23,769 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:06:23,771 - DEBUG - Response sent
+2025-07-06 13:08:49,563 - INFO - Logging initialized.
+2025-07-06 13:08:49,568 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:08:49,568 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:08:49,568 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:08:49,569 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:08:49,569 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:08:49,569 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:08:49,569 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:08:49,569 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:08:49,636 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:08:49,648 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:08:49,649 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001B9F9D6AD50>
+2025-07-06 13:08:49,649 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:08:49,649 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:08:49,651 - DEBUG - Response sent
+2025-07-06 13:08:52,631 - INFO - Logging initialized.
+2025-07-06 13:08:52,636 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:08:52,636 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:08:52,636 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:08:52,637 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:08:52,637 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:08:52,637 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:08:52,637 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:08:52,637 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:08:52,700 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:08:52,712 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:08:52,713 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000169F620ED50>
+2025-07-06 13:08:52,713 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:08:52,713 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:08:52,715 - DEBUG - Response sent
+2025-07-06 13:09:02,221 - INFO - Logging initialized.
+2025-07-06 13:09:02,227 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:09:02,227 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:09:02,228 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:09:02,228 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:09:02,228 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:09:02,228 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:09:02,229 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:09:02,229 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:09:02,296 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:09:02,304 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:09:02,306 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000225F55FED50>
+2025-07-06 13:09:02,306 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:09:02,306 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:09:02,306 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 13:09:13,353 - DEBUG - Response sent
+2025-07-06 13:09:13,358 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000225F55FF750>
+2025-07-06 13:09:13,359 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:09:13,359 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:09:13,360 - DEBUG - Response sent
+2025-07-06 13:09:36,248 - INFO - Logging initialized.
+2025-07-06 13:09:36,253 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:09:36,253 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:09:36,253 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:09:36,253 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:09:36,254 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:09:36,255 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:09:36,256 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:09:36,256 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:09:36,320 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:09:36,330 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:09:36,331 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002397EA0ED50>
+2025-07-06 13:09:36,332 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:09:36,332 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:09:36,332 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:09:39,403 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:39,910 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke+birthday&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:40,444 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:40,856 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:41,810 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:42,104 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&prop=sections&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:42,679 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:43,802 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=1&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:43,856 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:44,397 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=2&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:45,208 - DEBUG - Response sent
+2025-07-06 13:09:45,212 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002397EA0F750>
+2025-07-06 13:09:45,213 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:09:45,213 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:09:45,214 - DEBUG - Response sent
+2025-07-06 13:09:49,213 - INFO - Logging initialized.
+2025-07-06 13:09:49,218 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:09:49,218 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:09:49,219 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:09:49,285 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:09:49,294 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:09:49,295 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002353CE4ED50>
+2025-07-06 13:09:49,295 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:09:49,295 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:09:49,295 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:09:52,512 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:52,967 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke+birthday&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:53,795 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:54,210 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:55,334 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:55,634 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&prop=sections&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:56,357 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:57,494 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=0&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:57,514 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:09:58,204 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=2&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:09:59,384 - DEBUG - Response sent
+2025-07-06 13:09:59,389 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002353CE4F750>
+2025-07-06 13:09:59,390 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:09:59,390 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:09:59,392 - DEBUG - Response sent
+2025-07-06 13:16:14,069 - INFO - Logging initialized.
+2025-07-06 13:16:14,074 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:16:14,075 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:16:14,075 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:16:14,075 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:16:14,075 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:16:14,076 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:16:14,076 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:16:14,076 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:16:14,147 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:16:14,158 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:16:14,159 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002796F86AAD0>
+2025-07-06 13:16:14,159 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:16:14,160 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:16:14,161 - DEBUG - Response sent
+2025-07-06 13:16:17,599 - INFO - Logging initialized.
+2025-07-06 13:16:17,606 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:16:17,607 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:16:17,607 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:16:17,607 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:16:17,608 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:16:17,608 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:16:17,608 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:16:17,608 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:16:17,691 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:16:17,700 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:16:17,701 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000015A5B27AAD0>
+2025-07-06 13:16:17,702 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:16:17,702 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:16:17,703 - DEBUG - Response sent
+2025-07-06 13:16:36,259 - INFO - Logging initialized.
+2025-07-06 13:16:36,267 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:16:36,267 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:16:36,267 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:16:36,267 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:16:36,267 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:16:36,268 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:16:36,268 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:16:36,268 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:16:36,332 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:16:36,342 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:16:36,343 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000212C79BAAD0>
+2025-07-06 13:16:36,343 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:16:36,343 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:16:36,343 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 13:16:36,344 - INFO - Orchestrator: Calling Reason Agent with query: 'What is 2+2?' and context: {}
+2025-07-06 13:16:42,119 - INFO - Orchestrator: Reason Agent returned: 'The question asks for the sum of 2 and 2. I can use the `add_tool` to calculate this sum. The `add_tool` takes a list of numbers as input and returns their sum. In this case, the list of numbers is `[2, 2]`. The `add_tool` returns 4, which is the sum of 2 and 2.'
+2025-07-06 13:16:42,122 - DEBUG - Response sent
+2025-07-06 13:16:42,126 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000212C79BB4D0>
+2025-07-06 13:16:42,127 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:16:42,127 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:16:42,128 - DEBUG - Response sent
+2025-07-06 13:18:32,251 - INFO - Logging initialized.
+2025-07-06 13:18:32,256 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:18:32,257 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:18:32,257 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:18:32,257 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:18:32,258 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:18:32,258 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:18:32,258 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:18:32,258 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:18:32,330 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:18:32,340 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:18:32,341 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000018975156AD0>
+2025-07-06 13:18:32,342 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:18:32,342 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:18:32,342 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:18:32,343 - INFO - Orchestrator: Calling Search Agent with query: 'What is Otto von Guericke's birthday regarding Wikipedia' and context: {}
+2025-07-06 13:18:35,652 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:18:36,150 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke+birthday&format=json HTTP/1.1" 200 None
+2025-07-06 13:18:36,844 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:18:37,279 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Otto+von+Guericke&format=json HTTP/1.1" 200 None
+2025-07-06 13:18:38,142 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:18:38,458 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&prop=sections&format=json HTTP/1.1" 200 None
+2025-07-06 13:18:38,978 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:18:40,234 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=0&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:18:40,253 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:18:40,811 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=49828&section=2&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:18:41,368 - INFO - Orchestrator: Search Agent returned: 'Based on the Wikipedia article for Otto von Guericke, he was born on **30 November [O.S. 20 November] 1602**.'
+2025-07-06 13:18:41,370 - DEBUG - Response sent
+2025-07-06 13:18:41,373 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000189751574D0>
+2025-07-06 13:18:41,373 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:18:41,373 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:18:41,374 - DEBUG - Response sent
+2025-07-06 13:20:09,032 - INFO - Logging initialized.
+2025-07-06 13:20:09,038 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:20:09,038 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:20:09,039 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:20:09,039 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:20:09,039 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:20:09,039 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:20:09,040 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:20:09,040 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:20:09,114 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:20:09,124 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:20:09,125 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001B1486FAAD0>
+2025-07-06 13:20:09,126 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:20:09,126 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:20:09,128 - DEBUG - Response sent
+2025-07-06 13:20:12,448 - INFO - Logging initialized.
+2025-07-06 13:20:12,453 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:20:12,453 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:20:12,454 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:20:12,454 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:20:12,454 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:20:12,454 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:20:12,455 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:20:12,455 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:20:12,542 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:20:12,553 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:20:12,554 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x00000293A9236AD0>
+2025-07-06 13:20:12,555 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:20:12,555 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:20:12,556 - DEBUG - Response sent
+2025-07-06 13:20:27,732 - INFO - Logging initialized.
+2025-07-06 13:20:27,737 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:20:27,737 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:20:27,737 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:20:27,737 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:20:27,738 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:20:27,738 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:20:27,738 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:20:27,738 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:20:27,803 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:20:27,815 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:20:27,816 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002BEFFDE6AD0>
+2025-07-06 13:20:27,816 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:20:27,816 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:20:27,816 - DEBUG - Tool cache miss for call_reason_agent, refreshing cache
+2025-07-06 13:20:27,817 - INFO - Orchestrator: Calling Reason Agent with query: 'What is 2+2?' and context: {}
+2025-07-06 13:20:39,187 - INFO - Orchestrator: Reason Agent returned: 'The question asks for the sum of 2 and 2. To solve this, I will use the `add_tool` to add the numbers 2 and 2. The result is 4.
+
+Final Answer: The final answer is $\boxed{4}$'
+2025-07-06 13:20:39,191 - DEBUG - Response sent
+2025-07-06 13:20:39,196 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002BEFFDE74D0>
+2025-07-06 13:20:39,197 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:20:39,197 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:20:39,199 - DEBUG - Response sent
+2025-07-06 13:24:32,449 - INFO - Logging initialized.
+2025-07-06 13:24:32,455 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:24:32,455 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:24:32,455 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:24:32,455 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:24:32,456 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:24:32,456 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:24:32,456 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:24:32,456 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:24:32,520 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:24:32,530 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:24:32,530 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000001298D3A6AD0>
+2025-07-06 13:24:32,531 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:24:32,531 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:24:32,532 - DEBUG - Response sent
+2025-07-06 13:24:35,593 - INFO - Logging initialized.
+2025-07-06 13:24:35,598 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:24:35,598 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:24:35,599 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:24:35,662 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:24:35,672 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:24:35,673 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x0000017AA5936AD0>
+2025-07-06 13:24:35,673 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:24:35,673 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:24:35,674 - DEBUG - Response sent
+2025-07-06 13:26:15,349 - INFO - Logging initialized.
+2025-07-06 13:26:15,355 - DEBUG - Initializing server 'MCP-Tool-Server'
+2025-07-06 13:26:15,356 - DEBUG - Registering handler for ListToolsRequest
+2025-07-06 13:26:15,356 - DEBUG - Registering handler for CallToolRequest
+2025-07-06 13:26:15,356 - DEBUG - Registering handler for ListResourcesRequest
+2025-07-06 13:26:15,356 - DEBUG - Registering handler for ReadResourceRequest
+2025-07-06 13:26:15,356 - DEBUG - Registering handler for PromptListRequest
+2025-07-06 13:26:15,357 - DEBUG - Registering handler for GetPromptRequest
+2025-07-06 13:26:15,357 - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-07-06 13:26:15,422 - DEBUG - Using proactor: IocpProactor
+2025-07-06 13:26:15,432 - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-07-06 13:26:15,433 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002018E7AAAD0>
+2025-07-06 13:26:15,433 - INFO - Processing request of type CallToolRequest
+2025-07-06 13:26:15,434 - DEBUG - Dispatching request of type CallToolRequest
+2025-07-06 13:26:15,434 - DEBUG - Tool cache miss for call_search_agent, refreshing cache
+2025-07-06 13:26:15,435 - INFO - Orchestrator: Calling Search Agent with query: 'politics in Königs Wusterhausen wikipedia' and context: {}
+2025-07-06 13:26:18,809 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:26:19,289 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=politics+K%C3%B6nigs+Wusterhausen&format=json HTTP/1.1" 200 None
+2025-07-06 13:26:20,397 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:26:20,690 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=4596649&prop=sections&format=json HTTP/1.1" 200 None
+2025-07-06 13:26:21,418 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:26:22,769 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=4596649&section=0&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:26:22,791 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
+2025-07-06 13:26:23,286 - DEBUG - https://en.wikipedia.org:443 "GET /w/api.php?action=parse&pageid=4596649&section=8&prop=text&format=json HTTP/1.1" 200 None
+2025-07-06 13:26:24,474 - INFO - Orchestrator: Search Agent returned: 'Königs Wusterhausen is a town in the Dahme-Spreewald district of Brandenburg, Germany, located a few kilometers outside Berlin. The town council consists of 36 councillors, with the mayor as head. The seats are apportioned as follows: SPD - 8, CDU - 5, AfD - 5, The Left - 5, FWKW - 4, WfKW - 3, Alliance 90/The Greens - 3, FDP - 1, and other - 4.'
+2025-07-06 13:26:24,476 - DEBUG - Response sent
+2025-07-06 13:26:24,480 - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x000002018E7AB4D0>
+2025-07-06 13:26:24,480 - INFO - Processing request of type ListToolsRequest
+2025-07-06 13:26:24,481 - DEBUG - Dispatching request of type ListToolsRequest
+2025-07-06 13:26:24,482 - DEBUG - Response sent

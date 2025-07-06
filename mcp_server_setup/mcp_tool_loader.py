@@ -1,5 +1,5 @@
 # from mcp_server_setup.mcp_client import client
-from mcp_client import client
+from mcp_server_setup.mcp_client import client
 
 # asynchroneous function to get (subset of )MCP tools
 async def get_mcp_tools(allowed_tool_names: list[str]):
@@ -16,5 +16,5 @@ async def get_mcp_tools(allowed_tool_names: list[str]):
 
     filtered_tools = [tool for tool in all_tools if tool.name in allowed_tool_names]
     
-    print(f"MCP Tools loaded. Returning {len(filtered_tools)} of {len(all_tools)} tools.")
+    # print(f"MCP Tools loaded. Returning {len(filtered_tools)} of {len(all_tools)} tools.")
     return filtered_tools

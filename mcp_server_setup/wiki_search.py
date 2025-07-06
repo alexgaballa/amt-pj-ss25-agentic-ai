@@ -144,27 +144,3 @@ def get_multiple_sections_content(pageid, section_indices):
             sections_content[section_index] = f"Content could not be retrieved for section {section_index}."
     
     return sections_content
-
-
-def call_search_agent(query, context) -> str:
-    """
-    Invokes the search agent to find information, search the web or Wikipedia, or look up facts.
-    Use this for questions like 'What is the capital of France?', 'Summarize the Wikipedia page for AI', 'What is the current weather in Paris?'.
-    Args:
-        query: The specific question or search term for the search agent.
-        context: Optional additional context for the search agent.
-    Returns:
-        The result from the search agent.
-    """
-    print("✅ MCP Tool 'call_search_agent_tool' wurde aufgerufen.")
-
-    if context is None:
-        context = {}
-    print(f"\n🤖 Orchestrator: Calling Search Agent with query: '{query}' and context: {context}")
-    
-    # Import here to avoid circular dependencies
-    from agents.mcp_sub_agent_search import run_search_agent
-    
-    result = run_search_agent(user_query=query, context=context, verbose=False)
-    print(f"🤖 Orchestrator: Search Agent returned: '{result}'")
-    return result

@@ -10,13 +10,13 @@ from calculate import (
     calculate_median, calculate_std_dev, calculate_range,
     evaluate_expression, solve_equation, calculate_age,
     count_word_occurrences, estimate_reading_time,
-    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles, call_reason_agent
+    kg_to_lb, lb_to_kg, miles_to_km, km_to_miles
 )
 
 """Wiki-search tool imports"""
 from wiki_search import (
     search_wikipedia, get_wikipedia_content, clean_page_html,
-    get_page_sections, get_section_content, get_multiple_sections_content, call_search_agent
+    get_page_sections, get_section_content, get_multiple_sections_content
 )
 
 import logging
@@ -213,13 +213,13 @@ def call_reason_agent(query: str, context: Optional[dict] = None) -> str:
     """
     if context is None:
         context = {}
-    print(f"\nOrchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
+    logger.info(f"Orchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
     
     # Import here to avoid circular dependencies
     from agents.sub_agent_reason import run_reason_agent
     
     result = run_reason_agent(user_query=query, context=context, verbose=False)
-    print(f"Orchestrator: Reason Agent returned: '{result}'")
+    logger.info(f"Orchestrator: Reason Agent returned: '{result}'")
     return result
 
 # ==============================================================================
@@ -312,13 +312,13 @@ def call_search_agent(query: str, context: Optional[dict] = None) -> str:
     """
     if context is None:
         context = {}
-    print(f"\nOrchestrator: Calling Search Agent with query: '{query}' and context: {context}")
-    
+    logger.info(f"Orchestrator: Calling Search Agent with query: '{query}' and context: {context}")
+
     # Import here to avoid circular dependencies
     from agents.sub_agent_search import run_search_agent
     
     result = run_search_agent(user_query=query, context=context, verbose=False)
-    print(f"Orchestrator: Search Agent returned: '{result}'")
+    logger.info(f"Orchestrator: Search Agent returned: '{result}'")
     return result
 
 # to run the server --> mcp dev mcp_tools_server.py (inside of mcp_server_setup folder)

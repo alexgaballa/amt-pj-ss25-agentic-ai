@@ -133,24 +133,3 @@ def divide(dividend: float, divisor: float) -> Union[float, str]:
         return dividend / divisor
     except ZeroDivisionError:
         return "Division by zero is not allowed."
-
-async def call_reason_agent(query: str, context: Optional[dict] = None) -> str:
-    """
-    Invokes the reason agent for calculations, unit conversions, date manipulations, logical reasoning, or solving math expressions.
-    Use this for questions like 'What is 2+2?', 'Convert 100 miles to km', 'How old am I if born on Jan 1, 2000?'.
-    Args:
-        query: The specific problem or question for the reason agent.
-        context: Optional additional context for the reason agent.
-    Returns:
-        The result from the reason agent.
-    """
-    from agents.mcp_sub_agent_reason import run_reason_agent  # Import here to avoid circular import issues
-    print("DEBUG:", run_reason_agent, type(run_reason_agent))
-    
-    if context is None:
-        context = {}
-    print(f"\nOrchestrator: Calling Reason Agent with query: '{query}' and context: {context}")
-    
-    result = await run_reason_agent(user_query=query, context=context, verbose=False)
-    print(f"Orchestrator: Reason Agent returned: '{result}'")
-    return result
