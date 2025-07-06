@@ -1,11 +1,5 @@
 import requests
-import re
 from bs4 import BeautifulSoup
-# Removing circular import
-# from agents.sub_agent_search import run_search_agent
-
-
-
 
 WIKI_API_URL = "https://en.wikipedia.org/w/api.php"
 
@@ -162,12 +156,14 @@ def call_search_agent(query, context) -> str:
     Returns:
         The result from the search agent.
     """
+    print("✅ MCP Tool 'call_search_agent_tool' wurde aufgerufen.")
+
     if context is None:
         context = {}
     print(f"\n🤖 Orchestrator: Calling Search Agent with query: '{query}' and context: {context}")
     
     # Import here to avoid circular dependencies
-    from agents.sub_agent_search import run_search_agent
+    from agents.mcp_sub_agent_search import run_search_agent
     
     result = run_search_agent(user_query=query, context=context, verbose=False)
     print(f"🤖 Orchestrator: Search Agent returned: '{result}'")
