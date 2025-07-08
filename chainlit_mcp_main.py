@@ -9,7 +9,6 @@ from langgraph.prebuilt import ToolNode
 import chainlit as cl
 from agents.mcp_orchestrator_agent import orchestrator_agent_executor
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
-import io
 
 #mcp imports
 import asyncio
@@ -22,7 +21,7 @@ if project_root not in sys.path:
 # Load environment variables (e.g., GOOGLE_API_KEY)
 load_dotenv()
 
-orchestrator_tools = asyncio.run(get_mcp_tools([
+tool_node_tools = asyncio.run(get_mcp_tools([
     "call_search_agent",
     "call_reason_agent",
 ]))
@@ -50,7 +49,7 @@ workflow = StateGraph(AgentState)
 workflow.add_node("orchestrator", orchestrator_agent_executor)
 
 # Add the tool node for executing sub-agent calls
-tool_node = ToolNode(orchestrator_tools)
+tool_node = ToolNode(tool_node_tools)
 workflow.add_node("tools", tool_node)
 
 # Add delay nodes (no actual delay in Chainlit version for better UX)
