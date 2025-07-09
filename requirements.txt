@@ -9,6 +9,8 @@ python-dotenv
 bs4
 langgraph-checkpoint-sqlite
 chainlit
+google-cloud-aiplatform
+sentencepiece
 
 #MCP
 mcp[cli]

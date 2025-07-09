@@ -9,6 +9,8 @@ from langgraph.prebuilt import ToolNode
 import chainlit as cl
 from agents.mcp_orchestrator_agent import orchestrator_agent_executor
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
+import io
+from vertexai.preview.tokenization import get_tokenizer_for_model
 
 #mcp imports
 import asyncio
@@ -21,7 +23,7 @@ if project_root not in sys.path:
 # Load environment variables (e.g., GOOGLE_API_KEY)
 load_dotenv()
 
-tool_node_tools = asyncio.run(get_mcp_tools([
+orchestrator_tools = asyncio.run(get_mcp_tools([
     "call_search_agent",
     "call_reason_agent",
 ]))
@@ -33,6 +35,69 @@ print("📂 (Located in the root directory where you started this script.)")
 # --- Define State ---
 class AgentState(TypedDict):
     messages: Annotated[List[BaseMessage], operator.add]
+
+# --- Token-based Context Selection ---
+def select_messages_by_tokens(
+    conversation_memory: List[dict], 
+    current_query: str, 
+    max_tokens: int = 800000
+) -> List[BaseMessage]:
+    """
+    Select conversation messages based on token limit, working backwards from most recent.
+    Uses official Gemini tokenizer for accurate token counting.
+    Falls back to last 5 messages if tokenizer fails.
+    
+    Args:
+        conversation_memory: List of message dicts with 'type' and 'content'
+        current_query: The current user query
+        max_tokens: Maximum tokens to include 
+    
+    Returns:
+        List of BaseMessage objects within token limit
+    """
+    try:
+        # Initialize official Gemini tokenizer
+        tokenizer = get_tokenizer_for_model("gemini-1.5-flash-002")
+        
+        # Always include the current query first
+        current_query_tokens = tokenizer.count_tokens(current_query).total_tokens
+        selected_messages = []
+        total_tokens = current_query_tokens
+        
+        # Work backwards through conversation memory
+        for mem in reversed(conversation_memory):
+            # Calculate tokens for this message using official Gemini tokenizer
+            message_content = mem["content"]
+            message_tokens = tokenizer.count_tokens(message_content).total_tokens
+            
+            # Add small overhead for message formatting (role, structure, etc.)
+            message_tokens_with_overhead = message_tokens + 10
+            
+            # Check if adding this message would exceed token limit
+            if total_tokens + message_tokens_with_overhead <= max_tokens:
+                selected_messages.insert(0, mem)  # Insert at beginning to maintain order
+                total_tokens += message_tokens_with_overhead
+            else:
+                # Stop if we would exceed the limit
+                break
+        
+    except Exception as e:
+        # Fallback to original behavior if Gemini tokenizer fails
+        print(f"⚠️ Gemini token counting failed, falling back to last 5 messages: {e}")
+        selected_messages = conversation_memory[-5:] if len(conversation_memory) >= 5 else conversation_memory
+    
+    # Convert to LangChain message objects
+    context_messages = []
+    for mem in selected_messages:
+        if mem["type"] == "human":
+            context_messages.append(HumanMessage(content=mem["content"]))
+        elif mem["type"] == "ai":
+            context_messages.append(AIMessage(content=mem["content"]))
+    
+    # Add the current query at the end
+    context_messages.append(HumanMessage(content=current_query))
+    
+    return context_messages
 
 # --- Define Graph ---
 
@@ -49,7 +114,7 @@ workflow = StateGraph(AgentState)
 workflow.add_node("orchestrator", orchestrator_agent_executor)
 
 # Add the tool node for executing sub-agent calls
-tool_node = ToolNode(tool_node_tools)
+tool_node = ToolNode(orchestrator_tools)
 workflow.add_node("tools", tool_node)
 
 # Add delay nodes (no actual delay in Chainlit version for better UX)
@@ -108,14 +173,12 @@ async def main(message: cl.Message):
     message_count = cl.user_session.get("message_count", 0)
     
     try:
-        # Prepare conversation context
-        context_messages = []
-        for mem in conversation_memory[-5:]:
-            if mem["type"] == "human":
-                context_messages.append(HumanMessage(content=mem["content"]))
-            elif mem["type"] == "ai":
-                context_messages.append(AIMessage(content=mem["content"]))
-        context_messages.append(HumanMessage(content=user_query))
+        # Prepare conversation context with token-based selection
+        context_messages = select_messages_by_tokens(
+            conversation_memory=conversation_memory,
+            current_query=user_query,
+            max_tokens=64000  # 64k token limit
+        )
         
         # Same workflow as main.py 
         async with cl.Step(name="🤖 Orchestrator Workflow", type="llm") as workflow_step:
