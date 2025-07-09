@@ -1,0 +1,52 @@
+[
+    {
+        "prompt": "What does the protestant congregations of königs westerhausen make up?",
+        "system_response": "The Protestant congregations of Königs Wusterhausen, along with those in Deutsch Wusterhausen, Niederlehme, Senzig, Zeesen, Zernsdorf, and Schenkendorf, make up the ecclesiastical Region 9 of the Evangelical Church of Berlin-Brandenburg-Silesian Upper Lusatia.",
+        "reference": "The Protestant congregations in Königs Wusterhausen (KW), Deutsch Wusterhausen, Niederlehme, Senzig, Zeesen, and Zernsdorf (all components of KW) as well as that in Schenkendorf (a component of Mittenwalde), today make up the ecclesiastical Region 9."
+    },
+    {
+        "prompt": "Provide me with the entire paragraph on the quality of life in Berlin.",
+        "system_response": "Berlin consistently ranks high in quality of life surveys. According to Mercer, Berlin ranked number 19 in the Quality of Living City Ranking in 2024. Also in 2024, according to Monocle, Berlin occupied the position of the 17th-most-livable city in the world. Economist Intelligence Unit ranked Berlin number 21 of all global cities for livability. In 2019 Berlin was also number 8 on the Global Power City Index and was honored for having the best future prospects of all cities in Germany",
+        "reference": "According to Mercer, Berlin ranked number 19 in the Quality of Living City Ranking in 2024. Also in 2024, according to Monocle, Berlin occupied the position of the 17th-most-livable city in the world. Economist Intelligence Unit ranked Berlin number 21 of all global cities for livability. In 2019 Berlin was also number 8 on the Global Power City Index and was honored for having the best future prospects of all cities in Germany."
+    },
+    {
+        "prompt": "What is the surface area of the largest city in Baden-Württemberg multiplied by 20?",
+        "system_response": "The surface area of the largest city in Baden-Württemberg (Stuttgart) multiplied by 20 is 4147 km²",
+        "reference": "The largest city in Baden-Württemberg is Stuttgart with a surface area of 207.33 km². The surface area multiplied by 20 is equal to 4146.6km²"
+    },
+    {
+        "prompt": "List three Nobel Prize winners in Physics from Germany and the year they won.",
+        "system_response": "Here are three Nobel Prize winners in Physics from Germany: Wilhelm Conrad Röntgen (awarded in 1901),Max von Laue (awarded in 1914),Max Planck (awarded in 1918)",
+        "reference": "Three Nobel Prize winners in Physics from Germany, with their respective winning years, are: Max von Laue (1914), Max Planck (1918), and Albert Einstein (1921). "
+    },
+    {
+        "prompt": "Wikipedia gives the roof height of the Empire State Building (find it) and the original architectural height of the Eiffel Tower as 300 m (antennas excluded). If you stacked the Empire State Building directly on top of the Eiffel Tower, would the combined height exceed that of the Burj Khalifa ? By how many metres would it be taller or shorter?",
+        "system_response": "The roof height of the Empire State Building is 380 meters. The original architectural height of the Eiffel Tower is 300 meters. If you stacked them, the combined height would be 680 meters. The Burj Khalifa is 829.8 meters tall. Therefore, the combined height of the Empire State Building and the Eiffel Tower would be shorter than the Burj Khalifa by 149.8 meters.",
+        "reference": "The stack is 147 m shorter than the Burj Khalifa, so it would not exceed it"
+    },
+    {
+        "prompt": "How many years and days elapsed between the award of the James Webb Space Telescope prime contract to TRW and its launch?",
+        "system_response": "The James Webb Space Telescope prime contract was awarded to TRW on September 11, 2003, and it was launched on December 25, 2021. The elapsed time between these two dates is 18 years and 6680 days.",
+        "reference": "From 11 Sep 2003 to 25 Dec 2021 is 18 years and 105 days (total 6 680 days)."
+    },
+    {
+        "prompt": "Identify the two deepest oceanic trenches by maximum recorded depth on Wikipedia. Convert each maximum depth from meters to feet (round to the nearest foot) and then compute the range (difference between deepest and shallowest) of those two depths in feet.",
+        "system_response": "The two deepest oceanic trenches are the Mariana Trench with a maximum depth of 36,037 feet and the Tonga Trench with a maximum depth of 35,433 feet. The range of these depths is 604 feet.",
+        "reference": "The two deepest oceanic trenches are the Mariana Trench and the Tonga Trench, with the Mariana Trench being the deepest overall with a depth of 10,984 meters (converted to 36,037 feet). The Tonga has the deepest point, known as Horizon Deep, reaching a depth of 10,800 meters (converted to 35,433 feet). The Mariana Trench's deepest point is 604 feet deeper than the Tonga Trench's deepest depth."
+    },
+    {
+        "prompt": "Find the average temperature in Frankfurt in July and calculate the difference to Berlin's.",
+        "system_response": "The average temperature in Frankfurt in July is 20.8 °C (69.4 °F). The average temperature in Berlin in July is 23.9 °C (75.0 °F). The difference between the average temperatures is 3.1 °C.",
+        "reference": "The average temperature in Frankfurt in July is approximately 20.8°C (69.4°F), while Berlin's average temperature in July is around 19.6 °C (67.3 °F). Therefore, Frankfurt is slightly warmer than Berlin in July, with a temperature difference of about 1.2°C (2.1°F)"
+    },
+    {
+        "prompt": "What is the total length of the Rhine river, and calculate the difference to that of the Danube?",
+        "system_response": "The Rhine river is approximately 1,230 km long, and the Danube river is approximately 2,850 km long. The difference in length between the Danube and the Rhine is 1,620 km.",
+        "reference": "The rhine reiver is 1,230 km long and the danube river is 2,850 km long. The difference in length between them is 1,620 km."
+    },
+    {
+        "prompt": "Using only Wikipedia, determine the age (in years and days) at which Donald Trump first took office.",
+        "system_response": "Donald Trump was 70 years and 220 days old when he took office.",
+        "reference": "Donald Trump was born in June 14 1946. He first took office in January 20 2017. The age of Donald Trump was 70 years and 220 days when he first took office "
+    }
+]
