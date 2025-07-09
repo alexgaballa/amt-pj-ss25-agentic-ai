@@ -22,7 +22,7 @@
     {
         "prompt": "Wikipedia gives the roof height of the Empire State Building (find it) and the original architectural height of the Eiffel Tower as 300 m (antennas excluded). If you stacked the Empire State Building directly on top of the Eiffel Tower, would the combined height exceed that of the Burj Khalifa ? By how many metres would it be taller or shorter?",
         "system_response": "The roof height of the Empire State Building is 380 meters. The original architectural height of the Eiffel Tower is 300 meters. If you stacked them, the combined height would be 680 meters. The Burj Khalifa is 829.8 meters tall. Therefore, the combined height of the Empire State Building and the Eiffel Tower would be shorter than the Burj Khalifa by 149.8 meters.",
-        "reference": "The stack is 147 m shorter than the Burj Khalifa, so it would not exceed it"
+        "reference": "The empire state building has a roof of 380 meters height (excluding antenna). The Burj Khalifa has a height of 828 m (excluding the antenna). The stack is 148 m shorter than the Burj Khalifa, so it would not exceed it."
     },
     {
         "prompt": "How many years and days elapsed between the award of the James Webb Space Telescope prime contract to TRW and its launch?",

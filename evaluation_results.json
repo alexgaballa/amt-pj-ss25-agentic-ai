@@ -62,15 +62,15 @@
   {
     "prompt": "Wikipedia gives the roof height of the Empire State Building (find it) and the original architectural height of the Eiffel Tower as 300 m (antennas excluded). If you stacked the Empire State Building directly on top of the Eiffel Tower, would the combined height exceed that of the Burj Khalifa ? By how many metres would it be taller or shorter?",
     "system_response": "The roof height of the Empire State Building is 380 meters. The original architectural height of the Eiffel Tower is 300 meters. If you stacked them, the combined height would be 680 meters. The Burj Khalifa is 829.8 meters tall. Therefore, the combined height of the Empire State Building and the Eiffel Tower would be shorter than the Burj Khalifa by 149.8 meters.",
-    "reference": "The stack is 147 m shorter than the Burj Khalifa, so it would not exceed it",
+    "reference": "The empire state building has a roof of 380 meters height (excluding antenna). The Burj Khalifa has a height of 828 m (excluding the antenna). The stack is 148 m shorter than the Burj Khalifa, so it would not exceed it.",
     "correctness": {
       "score": false,
-      "reasoning": "The provided answer states the combined height would be shorter by 149.8 meters, while the reference answer states it is 147 meters shorter. The difference in the subtraction result indicates a slight discrepancy in the height values used or rounding, so the provided answer is not exactly correct according to the reference answer.",
+      "reasoning": "The provided answer states the combined height would be shorter by 149.8 meters, while the reference answer states it is 148 meters shorter. The difference in the subtraction result indicates a slight discrepancy in the height values used or rounding, so the provided answer is not exactly correct according to the reference answer.",
       "score_type": "boolean"
     },
     "quality": {
       "score": 8,
-      "reasoning": "The assistant correctly identified the roof height of the Empire State Building as 380 meters and the original architectural height of the Eiffel Tower as 300 meters, then accurately summed these to get 680 meters. It also correctly stated the height of the Burj Khalifa as 829.8 meters and calculated the difference as 149.8 meters. The response is accurate, relevant, and clear. However, it could be improved by citing the source of the data (e.g., Wikipedia) and clarifying that the antenna height of the Empire State Building is excluded, as per the user's question. Overall, the answer is helpful and sufficiently detailed for the question asked.",
+      "reasoning": "The assistant correctly identified the roof height of the Empire State Building as 380 meters and the original architectural height of the Eiffel Tower as 300 meters, then accurately summed these to get 680 meters. It also correctly stated the height of the Burj Khalifa as 829.8 meters and calculated the difference as 149.8 meters. The response is accurate, relevant, and clear. However, it could be improved by clarifying that the antenna height of the Empire State Building is excluded, as per the user's question. Overall, the answer is helpful and sufficiently detailed for the question asked.",
       "score_type": "numerical"
     }
   },
