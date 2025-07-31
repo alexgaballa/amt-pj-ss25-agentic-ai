@@ -1,11 +1,10 @@
 {
   "user_001": {
-    "name": "Alexander",
-    "studies": "Engineering",
+    "name": "",
+    "studies": "",
     "age": "",
     "gender": "",
     "likes": [
-      "",
       ""
     ]
   }
