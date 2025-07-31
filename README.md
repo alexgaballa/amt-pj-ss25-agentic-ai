@@ -94,6 +94,23 @@ The system handles various query types:
 "Find the exact first part of the Economy section on the Berlin Wikipedia page"
 ```
 
+### Personalization
+When the user provides personal information during the conversation, it is automatically extracted and stored or updated in a persistent, cross-session long-term memory implemented as a structured JSON object in the following format:
+```
+{
+  "user_001": {
+    "name": "",
+    "studies": "",
+    "age": "",
+    "gender": "",
+    "likes": [
+      ""
+    ]
+  }
+}
+```
+This information is then used to personalize future interactions by injecting relevant facts (e.g., name, field of study, interests) into the system prompt, enabling the agent to tailor its responses accordingly. For example once a name has been provided, the chatbot will use it to personalize future interactions—for example, by greeting the user by name in subsequent sessions.
+
 ## Evaluation System
 
 ### LLM-as-a-Judge Framework
