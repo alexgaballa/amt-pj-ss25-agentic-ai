@@ -13,7 +13,7 @@ This system implements an **orchestrated multi-agent architecture** consisting o
 
 The agents communicate through a **LangGraph StateGraph** workflow with persistent memory and intelligent routing.
 
-## ✨ Key Features
+## Key Features
 
 - **Multi-Agent Coordination**: Intelligent task routing and result synthesis
 - **Token-Aware Context**: Adapted to the token window of Gemini 2.0 Flash to maximize message context
@@ -42,7 +42,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 
 ```bash
-# ⚠️ Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
+# Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
 # create and activate virtual environment beforehand
 pip install -r requirements.txt
 ```
