@@ -29,7 +29,7 @@ The agents communicate through a **LangGraph StateGraph** workflow with persiste
 ### Prerequisites
 
 ```bash
-# Python 3.10+ required
+# ⚠️ Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
 pip install -r requirements.txt
 ```
 
