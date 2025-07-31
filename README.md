@@ -16,23 +16,13 @@ The agents communicate through a **LangGraph StateGraph** workflow with persiste
 ## ✨ Key Features
 
 - **Multi-Agent Coordination**: Intelligent task routing and result synthesis
-- **Memory**: Conversation context preserved across message interactions and across chats
+- **Token-Aware Context**: Adapted to the token window of Gemini 2.0 Flash to maximize message context
+- **Long-Term-Memory**: Persona preserved across message interactions and across sessions
 - **ReAct Pattern**: Reasoning + Acting cycles for complex problem solving
 - **Efficient API Usage**: Rate limiting and batch operations
 - **Multiple Interfaces**: Command-line and web-based UI options
 - **Dual Implementation**: Standard tools and MCP (Model Context Protocol) support
-
-## Implementation Approaches
-
-### Standard Implementation
-- Direct tool integration via `tools.tool_wrappers`
-- Synchronous execution for simpler workflows
-- Lower latency with minimal overhead
-
-### MCP Implementation
-- Dynamic tool loading through Model Context Protocol
-- Service-oriented architecture with distributed tool services
-- Asynchronous operations for improved scalability
+- **Cutting-Edge Tool-Provisioning**: via Model Context Protocol
 
 ## Getting Started
 
@@ -54,7 +44,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 ### Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/alexgaballa/amt-pj-ss25-agentic-ai.git
 cd amt-pj-ss25-agentic-ai
 pip install -r requirements.txt
 ```
@@ -71,7 +61,8 @@ chainlit run chainlit_mcp_main.py
 This provides:
 - Interactive chat interface
 - Real-time conversation flow visualization
-- Session-based memory persistence
+- Session-based short term memory
+- User-based long term memory
 - Token-aware context management
 
 ### Command Line Interface MCP Implementation
@@ -134,9 +125,8 @@ Evaluation data format:
 ## Configuration Options
 
 ### Memory Settings
-- **Thread-based Sessions**: Unique conversation contexts
-- **Token Management**: Automatic context size optimization
-- **Message Limits**: Configurable conversation history depth
+- **Thread-based Sessions**: Each conversation retains its own context for consistent reasoning and task execution.
+- **User-based Persona**: Persistent profiles capture key user attributes (e.g. name, studies, interests) across sessions, enabling personalized interactions and memory continuity.
 
 ### Rate Limiting
 - **API Quota Management**: 2-second delays between node transitions
@@ -208,6 +198,7 @@ def select_messages_by_tokens(
 **Memory Errors:**
 - Check token limits in context selection
 - Verify conversation history cleanup
+- Check "long_term_memory.json" for persistet user attributes
 
 **Tool Loading Failures:**
 - Ensure MCP server is running for MCP implementation
