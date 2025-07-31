@@ -1,48 +1,59 @@
-from xmlrpc import client
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage
 from langgraph.prebuilt import create_react_agent
+import os
+import sys
+
+from langchain.tools import StructuredTool
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
 import asyncio
 
 load_dotenv()
 
-# Create the agent executor with the LLM and tools
-tools = asyncio.run(get_mcp_tools([
-    "search_wikipedia_tool",
-    "get_wikipedia_content_tool",
-    "get_page_sections_tool",
-    "get_section_content_tool",
-    "get_multiple_sections_content_tool"
-]))
+tools = None
+agent_executor = None
 
-memory = MemorySaver()
-model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
- 
-# Bind the tools to the model
-#model_with_tools = model.bind_tools(tools)
+async def initialize_search_agent():
+    """Initialisiere Tools und Agent nur einmal."""
+    global agent_executor
+    if agent_executor is None:
+        tools_to_load = [
+            "search_wikipedia_tool",
+            "get_wikipedia_content_tool",
+            "get_page_sections_tool",
+            "get_section_content_tool",
+            "get_multiple_sections_content_tool"
+        ]
+        mcp_tools = await get_mcp_tools(tools_to_load)
 
-# Ensure tools are passed correctly to the agent
-agent_executor = create_react_agent(model, tools)
+        def make_tool_func(tool_coroutine):
+            def func(**kwargs):
+                print(f"Calling tool with kwargs: {kwargs}")
+                return asyncio.run(tool_coroutine(**kwargs))
+            return func
 
-# for step in agent_executor.stream(
-#     {"messages": [HumanMessage(content="How many people live in cairo according?")]},
-#     stream_mode="values",
-# ):
-#     step["messages"][-1].pretty_print()
+        tools = [
+            StructuredTool(
+                name=t.name,
+                description=t.description,
+                func=make_tool_func(t.coroutine),
+                args_schema=t.args
+            )
+            for t in mcp_tools
+        ]
 
-# # Initialize the agent with the tools, making sure to use ReAct (STRUCTURED_CHAT with Gemini works well)
-# agent_executor = initialize_agent(
-#     tools=tools,
-#     llm=llm,
-#     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-#     verbose=True,
-#     handle_parsing_errors=True,
-# )
+        memory = MemorySaver()
+        model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0, memory=memory)
+        agent_executor = create_react_agent(model, tools)
 
-def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) -> str:
+async def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) -> str:
     """
     Sub-agent responsible for retrieving and returning information via Gemini.
     Uses LangChain agent to search Wikipedia, select relevant pages, and retrieve cleaned content.
@@ -53,7 +64,8 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
         
     Returns:
         A string containing the cleaned content from the selected Wikipedia page
-    """    # Prepare prompt for the agent
+    """
+    await initialize_search_agent()
     prompt_text = f"""
     You are a research assistant that can search for information on Wikipedia.
     
@@ -91,7 +103,7 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
             print("\n=== AGENT CONVERSATION ===")
             final_result = None
             
-            for step in agent_executor.stream(
+            async for step in agent_executor.astream(
                 {"messages": [HumanMessage(content=prompt_text)]},
                 stream_mode="values",
             ):
@@ -105,7 +117,7 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
             return final_result if final_result else "No results found."
         else:
             # Just get the final result without showing the conversation
-            result = agent_executor.invoke({"messages": [HumanMessage(content=prompt_text)]})
+            result = await agent_executor.ainvoke({"messages": [HumanMessage(content=prompt_text)]})
             if "messages" in result and result["messages"]:
                 return result["messages"][-1].content
             return "No results found."
@@ -113,14 +125,21 @@ def run_search_agent(user_query: str, context: dict = {}, verbose: bool = True) 
         return f"Error running search agent: {str(e)}"
 
 if __name__ == "__main__":
-    # This will only run when the file is executed directly, not when imported
-    result = run_search_agent(
-        # user_query="Please provide me with the exact first part of the Economy section on the Berlin wikipedia page. Cite it in your answer.",
-        #user_query="the exact first part of the Economy section on the Berlin wikipedia page.",
-        user_query="the exact first part of the Economy section on the Berlin wikipedia page!",
-        # user_query="Berlin wikipedia page Economy section first part",
-        context={"source_preference": "Always use Wikipedia as your primary source"},
-        verbose=True  # Set to True to see the entire conversation
-    )
-    print("\nSearch agent result:")
-    print(result)
+    test_queries=[
+        "The exact first part of the Economy section on the Berlin wikipedia page!",
+        "Berlin wikipedia page Economy section first part",
+        "Please provide me with the exact first part of the Economy section on the Berlin wikipedia page. Cite it in your answer."
+    ],
+
+    query = test_queries[0]
+
+    async def run():
+        result = await run_search_agent(
+            user_query=query,
+            context={"source_preference": "Always use Wikipedia as your primary source"},
+            verbose=True
+        )
+        print("\nSearch agent result:")
+        print(result)
+
+    asyncio.run(run())

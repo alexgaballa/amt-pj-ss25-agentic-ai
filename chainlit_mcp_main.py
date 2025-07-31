@@ -1,7 +1,7 @@
 import sys
 import os
 from typing import TypedDict, Annotated, List
-from langchain_core.messages import HumanMessage, BaseMessage, AIMessage
+from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, SystemMessage
 import operator
 from dotenv import load_dotenv
 from langgraph.graph import StateGraph, END
@@ -9,11 +9,13 @@ from langgraph.prebuilt import ToolNode
 import chainlit as cl
 from agents.mcp_orchestrator_agent import orchestrator_agent_executor
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
-import io
 from vertexai.preview.tokenization import get_tokenizer_for_model
 
 #mcp imports
 import asyncio
+
+# memory import
+from update_user_profile import get_user_profile
 
 # Ensure the project root is in the Python path for imports
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -26,6 +28,7 @@ load_dotenv()
 orchestrator_tools = asyncio.run(get_mcp_tools([
     "call_search_agent",
     "call_reason_agent",
+    "extract_user_profile_info",
 ]))
 
 print("🔍 MCP debug log is being written to:")
@@ -35,6 +38,7 @@ print("📂 (Located in the root directory where you started this script.)")
 # --- Define State ---
 class AgentState(TypedDict):
     messages: Annotated[List[BaseMessage], operator.add]
+    tool_stack: Annotated[List[str], operator.add]
 
 # --- Token-based Context Selection ---
 def select_messages_by_tokens(
@@ -106,6 +110,8 @@ def delay_node_before_tools(state: AgentState) -> AgentState:
     return state
 
 def delay_node_before_orchestrator_reentry(state: AgentState) -> AgentState:
+    if "tool_stack" in state and len(state["tool_stack"]) > 5:
+        state["tool_stack"] = state["tool_stack"][-5:]
     return state
 
 workflow = StateGraph(AgentState)
@@ -124,11 +130,29 @@ workflow.add_node("delay_before_orchestrator", delay_node_before_orchestrator_re
 # Set the entry point
 workflow.set_entry_point("orchestrator")
 
+# Define a function to extract tool name from AIMessage
+def extract_tool_name(message: BaseMessage) -> str | None:
+    if isinstance(message, AIMessage) and hasattr(message, "tool_calls") and message.tool_calls:
+        return message.tool_calls[0].get("name")
+    return None
+
 # Define conditional edges
 def should_continue(state: AgentState) -> str:
     last_message = state["messages"][-1]
-    if isinstance(last_message, AIMessage) and hasattr(last_message, "tool_calls") and last_message.tool_calls and len(last_message.tool_calls) > 0:
+    last_tool = extract_tool_name(last_message)
+
+    if last_tool:
+        stack = state.get("tool_stack", [])
+        
+        # Rekursion verhindern: gleiches Tool wie zuletzt
+        if stack and stack[-1] == last_tool:
+            print(f"[RECURSION BLOCKED] Tool '{last_tool}' was just used. Preventing immediate repeat.")
+            return END
+        
+        # Tool auf Stack legen
+        state["tool_stack"] = stack + [last_tool]
         return "delay_before_tools"
+    
     return END
 
 workflow.add_conditional_edges(
@@ -155,31 +179,60 @@ async def start():
     cl.user_session.set("conversation_memory", [])
     cl.user_session.set("message_count", 0)
     
+    user_id = "user_001"
+    profile = get_user_profile(user_id)
+    
+    if profile.get("name"):
+        greeting = f"👋 Hello {profile['name']}! I'm your orchestrator agent."
+    else:
+        greeting = "👋 Hello! I don't know your name yet – what should I call you?"
+
     await cl.Message(
-        content="🤖 **Orchestrator Agent System** is ready!\n\n"
+        content=f"{greeting}\n\n"
                 "I can help you with:\n"
                 "- Mathematical calculations and equations\n"
                 "- Wikipedia searches and information retrieval\n"
-                "- Complex multi-step reasoning tasks\n\n"
+                "- Complex multi-step reasoning tasks"
     ).send()
 
 @cl.on_message
 async def main(message: cl.Message):
     """Handle incoming messages"""
     user_query = message.content
-    
+
     # Get conversation memory
     conversation_memory = cl.user_session.get("conversation_memory", [])
     message_count = cl.user_session.get("message_count", 0)
-    
-    try:
-        # Prepare conversation context with token-based selection
-        context_messages = select_messages_by_tokens(
-            conversation_memory=conversation_memory,
-            current_query=user_query,
-            max_tokens=64000  # 64k token limit
-        )
-        
+
+    # Long-Term Memory: get user profile
+    user_id = "user_001"
+    profile = get_user_profile(user_id)
+
+    # Build context: profile facts from long-term memory
+    profile_facts = []
+    if profile.get("name"):
+        profile_facts.append(f"name is {profile['name']}")
+    if profile.get("studies"):
+        profile_facts.append(f"studies {profile['studies']}")
+    if profile.get("age"):
+        profile_facts.append(f"age is {profile['age']}")
+    if profile.get("gender"):
+        profile_facts.append(f"gender is {profile['gender']}")
+    if profile.get("likes"):
+        profile_facts.append(f"likes {', '.join(profile['likes'])}")
+
+    context_messages = []
+    if profile_facts:
+        context_messages.append(SystemMessage(content="User's " + " and ".join(profile_facts) + "."))
+
+    # Short-Term-Memory: select recent conversation based on token budget
+    context_messages += select_messages_by_tokens(
+        conversation_memory=conversation_memory,
+        current_query=user_query,
+        max_tokens=64000
+    )
+
+    try:    
         # Same workflow as main.py 
         async with cl.Step(name="🤖 Orchestrator Workflow", type="llm") as workflow_step:
             workflow_step.input = f"Processing query: {user_query}"

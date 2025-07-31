@@ -1,9 +1,17 @@
-# filepath: c:\Users\alexg\OneDrive\Documents\University\Masters\Agentic AI AMT\amt-pj-ss25-agentic-ai\agents\sub_agent_reason.py
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage
 from langgraph.prebuilt import create_react_agent
+import os
+import sys
+
+from langchain.tools import StructuredTool
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from mcp_server_setup.mcp_tool_loader import get_mcp_tools
 import asyncio
 
@@ -14,23 +22,34 @@ agent_executor = None
 
 async def initialize_reason_agent():
     """Initialisiere Tools und Agent nur einmal."""
-    global tools, agent_executor
-    if tools is None or agent_executor is None:
+    global agent_executor
+    if agent_executor is None:
         tools_to_load = [
-            # Math operations
             "add_tool", "subtract_tool", "multiply_tool", "divide_tool",
-            # Unit conversions
             "convert_units_tool", "kg_to_lb_tool", "lb_to_kg_tool", "miles_to_km_tool", "km_to_miles_tool",
-            # Statistical tools
             "calculate_mean_tool", "calculate_median_tool", "calculate_std_dev_tool", "calculate_range_tool",
-            # Date and time tools
             "calculate_years_between_tool", "calculate_days_between_tool", "calculate_age_tool",
-            # Text analysis tools
             "count_word_occurrences_tool", "estimate_reading_time_tool",
-            # Math expression tools
             "evaluate_expression_tool", "solve_equation_tool"
         ]
-        tools = await get_mcp_tools(tools_to_load)
+    
+        mcp_tools = await get_mcp_tools(tools_to_load)
+
+        def make_tool_func(tool_coroutine):
+            def func(**kwargs):
+                print(f"Calling tool with kwargs: {kwargs}")
+                return asyncio.run(tool_coroutine(**kwargs))
+            return func
+
+        tools = [
+            StructuredTool(
+                name=t.name,
+                description=t.description,
+                func=make_tool_func(t.coroutine),
+                args_schema=t.args
+            )
+            for t in mcp_tools
+        ]
 
         memory = MemorySaver()
         model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0, memory=memory)
@@ -51,8 +70,6 @@ async def run_reason_agent(user_query: str, context: dict = {}, verbose: bool = 
         A string containing the agent's response with reasoning and results
     """
     await initialize_reason_agent()
-    
-    # Prepare prompt for the agent
     prompt_text = f"""
     You are a reasoning assistant capable of performing a wide range of calculations and analytical tasks.
     
@@ -84,7 +101,7 @@ async def run_reason_agent(user_query: str, context: dict = {}, verbose: bool = 
             print("\n=== AGENT CONVERSATION ===")
             final_result = None
             
-            async for step in agent_executor.stream(
+            async for step in agent_executor.astream(
                 {"messages": [HumanMessage(content=prompt_text)]},
                 stream_mode="values",
             ):
@@ -98,7 +115,7 @@ async def run_reason_agent(user_query: str, context: dict = {}, verbose: bool = 
             return final_result if final_result else "No results found."
         else:
             # Just get the final result without showing the conversation
-            result = await agent_executor.invoke({"messages": [HumanMessage(content=prompt_text)]})
+            result = await agent_executor.ainvoke({"messages": [HumanMessage(content=prompt_text)]})
             if "messages" in result and result["messages"]:
                 return result["messages"][-1].content
             return "No results found."
@@ -114,7 +131,7 @@ if __name__ == "__main__":
         "Calculate the mean and median of the following values: 5, 8, 12, 14, 15, 22, 35"
     ]
 
-    query = test_queries[3]
+    query = test_queries[1]
 
     async def run():
         result = await run_reason_agent(

@@ -15,6 +15,7 @@ load_dotenv()
 orchestrator_tools = asyncio.run(get_mcp_tools([
     "call_search_agent",
     "call_reason_agent",
+    "extract_user_profile_info",
 ]))
 
 # Initialize the LLM for the orchestrator
@@ -27,6 +28,7 @@ You are a master orchestrator agent. Your primary goal is to understand a user's
 You have access to the following tools:
 - `call_search_agent`: Use this agent for queries that require finding information, searching the web or Wikipedia, or looking up facts. For example: 'What is the capital of France?', 'Summarize the Wikipedia page for AI', 'What is the current weather in Berlin?'.
 - `call_reason_agent`: Use this agent for queries that involve calculations, unit conversions, date manipulations, logical reasoning, or solving mathematical expressions. For example: 'What is 2+2?', 'Convert 100 miles to km', 'How old am I if born on Jan 1, 2000?'.
+- `extract_user_profile_info`: Use this tool only if the user mentions personal information about themselves, such as their name, field of study, age, gender, or preferences (likes). The tool will extract and persist these details.
 
 Your process should be:
 1.  **Analyze**: Carefully analyze the user's query provided in the latest human message.
@@ -42,6 +44,13 @@ IMPORTANT:
 - Pay attention to the conversation history (available in `messages`) to keep track of previous interactions and results from specialist agents. This is crucial for multi-step queries.
 - If the user's query is simple and can be handled by a single call to a specialist agent, do so and then present its result (or a slightly rephrased version if needed) as the final answer.
 - Your final output to the user must be the answer itself, not a message saying you are about to answer or a call to another tool.
+
+USER PROFILE HANDLING:
+- If the user's message includes personal information (e.g., their name, what they study, how old they are, their gender, or what they like), then call `extract_profile_updates` with the full user message.
+- Only use the tool if relevant personal details are mentioned.
+- Do not extract or assume profile information yourself. Let the tool handle extraction and persistence.
+- Only refer to user profile facts if they are provided in the context messages as part of the system message (e.g., "User's name is Dennis and studies Business").
+- Never fabricate user facts or make assumptions based on names or stereotypes.
 """
 
 orchestrator_prompt = ChatPromptTemplate.from_messages(
