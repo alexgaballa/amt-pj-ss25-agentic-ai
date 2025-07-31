@@ -43,6 +43,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 
 ```bash
 # ⚠️ Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
+# create and activate virtual environment beforehand
 pip install -r requirements.txt
 ```
 
