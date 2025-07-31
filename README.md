@@ -26,11 +26,11 @@ The agents communicate through a **LangGraph StateGraph** workflow with persiste
 
 ## Getting Started
 
-### Prerequisites
+### Installation
 
 ```bash
-# ⚠️ Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
-pip install -r requirements.txt
+git clone https://github.com/alexgaballa/amt-pj-ss25-agentic-ai.git
+cd amt-pj-ss25-agentic-ai
 ```
 
 ### Environment Setup
@@ -41,11 +41,8 @@ Create a `.env` file in the project root:
 GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 
-### Installation
-
 ```bash
-git clone https://github.com/alexgaballa/amt-pj-ss25-agentic-ai.git
-cd amt-pj-ss25-agentic-ai
+# ⚠️ Use Python 3.10, 3.11 or 3.12 – Python 3.13 is not yet supported
 pip install -r requirements.txt
 ```
 
