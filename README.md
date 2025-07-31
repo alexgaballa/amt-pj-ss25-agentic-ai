@@ -56,7 +56,7 @@ chainlit run chainlit_mcp_main.py
 ```
 
 This provides:
-- Interactive chat interface
+- Interactive chat interface which opens automatically on a localhost
 - Real-time conversation flow visualization
 - Session-based short term memory
 - User-based long term memory
